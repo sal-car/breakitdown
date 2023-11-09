@@ -5,18 +5,18 @@ import OpenAI from 'openai'
 // Fetches data from OpenAI API
 // parameter: Object {project: "Clean my room", description: "My room is a mess"}
 // returns: Array [{project: "Gather cleaning supplies"}, ...] OR null if error in API request
-async function getBreakdown (project) {
-        const response = await requestDataFromAPI(project.name, project.description);
+async function getDataFromOpenAI (project) {
+        const response = await requestDataFromOpenAI(project.name, project.description);
         if (!response) return null;
 
         const data = formatResponse(response.choices[0].text);
 
-        console.log('data: ', data)
+        // console.log('data: ', data)
         return data;
 };
 
 // requests data from OpenAI API
-async function requestDataFromAPI (name, description) {
+async function requestDataFromOpenAI (name, description) {
     const openai = new OpenAI({
         apiKey: API_KEY,
     });
@@ -31,7 +31,8 @@ async function requestDataFromAPI (name, description) {
             frequency_penalty:0,
             presence_penalty:0.4
         });
-        console.log('res: ', response)
+        // console.log('response: ', response)
+
         return response;
     } catch (err) {
         console.log('Error with API request to OpenAI: ', err);
@@ -42,16 +43,16 @@ async function requestDataFromAPI (name, description) {
 
 // cleans and formats response
 function formatResponse (response) {
-    console.log('dirty: ', response)
+    // console.log('dirty: ', response)
     const cleanedUpList = response.split('\n').map((str) => str.replaceAll(/^([\d\p{P}\p{Z}]+)/gu, '').trim()).filter((str) => str != '\n' && str != '')
-    console.log('clean: ', cleanedUpList)
+    // console.log('clean: ', cleanedUpList)
     const formattedList = cleanedUpList.map((str) => {return {project: str}});
     
     return formattedList;
 };
 
 
-export default getBreakdown;
+export default getDataFromOpenAI;
 
 // -----TESTING-----
 
