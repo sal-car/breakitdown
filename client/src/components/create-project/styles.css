@@ -1,0 +1,36 @@
+.create-project-form,
+.name-date,
+.add-step-btns,
+.CreateProject {
+    display: flex;
+}
+
+.CreateProject {
+    flex-direction: column;
+    padding: 50px;
+    border: solid 1px black;
+    width: 60vw;
+    height: 75vh;
+    gap: 20px;
+
+}
+
+.create-project-form {
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.name-date {
+    gap: 30px;
+}
+
+.project-description {
+    height: 80px;
+    width: 300px;
+}
+
+.add-step-btns {
+    justify-content: center;
+    gap: 10px;
+}
