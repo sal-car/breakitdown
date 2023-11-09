@@ -10,7 +10,7 @@
     padding: 50px;
     border: solid 1px black;
     width: 60vw;
-    height: 75vh;
+    height: fit-content;
     gap: 20px;
 
 }

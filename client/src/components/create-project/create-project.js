@@ -2,6 +2,8 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './styles.css'
+import getBreakdown from '../../api-service.js'
+import {v4 as uuidv4} from 'uuid'
 
 
 export const CreateProject = function () {
@@ -12,17 +14,53 @@ export const CreateProject = function () {
     });
 
 
+
     const [steps, setSteps] = useState([])
 
 
    
 
     // Creating a step
+    // if the project is provided (from api), add it to project prop, otherwise initialise as empty
     const createStep = () => {
-        setSteps([...steps, {project: '', id: Date.now()}])
+        const uuid = uuidv4()
+        setSteps([...steps, {project: '', id: uuid}])
+    
         console.log(steps)
     }
 
+    // Breaking the project down
+    const breakItDown = async () => {
+        let updatedEntry = {}
+        // TODO get data from apiservice
+        try {
+            const data = await getBreakdown(projectData)
+
+            const newState = data.map((entry) => {
+                const uuid = uuidv4()
+                return {project: entry.project, id: uuid}
+            })
+            console.log('newstate: ', newState)
+            setSteps([...steps, ...newState])
+            console.log(data)
+            console.log('steps: ', steps)
+            // data.forEach((entry) => {
+            //     updatedEntry['project'] = entry.project
+            //     updatedEntry['id'] = Date.now()
+            //     setSteps([...steps, updatedEntry])
+            // })
+        } catch (error) {
+            console.log(error)
+        }
+
+
+
+
+
+
+
+        // TODO for each data entry, create a step with project data
+    }
 
 
 
@@ -37,10 +75,10 @@ export const CreateProject = function () {
         } else if (name == 'project-description') {
             setprojectData((prev) => ({...prev, description: event.target.value}))
 
-        } else if (Number(name) != NaN) {
+        } else {
             setSteps(
-                steps.map((step, index) => {
-                    if (Number(name) == step.id) {
+                steps.map((step) => {
+                    if (name == step.id) {
                         return {...step, project: event.target.value}
                     } else {
                         return step;
@@ -66,7 +104,7 @@ export const CreateProject = function () {
             <input type="submit" className="submit-btn" onChange={handleChange} name="save-project"/>
         </form>
         <div className="add-step-btns">
-            <button>Break it down</button>
+            <button onClick={breakItDown}>Break it down</button>
             <button onClick={createStep}>Add step</button>
         </div>
         <div className="steps-container">
