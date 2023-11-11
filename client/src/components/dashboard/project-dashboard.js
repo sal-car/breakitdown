@@ -28,6 +28,7 @@ export const ProjectDashboard = function ({projects, setProjects}) {
   }
 
 
+
   const filterProjects = function (e) {
     let today = new Date();
 

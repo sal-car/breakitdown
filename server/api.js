@@ -31,7 +31,7 @@ async function requestDataFromOpenAI (name, description=null) {
             max_tokens:140,
             top_p:1,
             frequency_penalty:0,
-            presence_penalty:0
+            presence_penalty:0.4
         });
         // console.log('response: ', response)
 
