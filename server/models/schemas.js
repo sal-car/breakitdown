@@ -1,0 +1,15 @@
+import mongoose from "mongoose"
+
+const taskSchema = new mongoose.Schema({
+    project: String,
+    id: String,
+    date: Date
+})
+
+export const projectSchema = new mongoose.Schema({
+    project: String,
+    date: Date,
+    description: String,
+    id: String,
+    tasks: [taskSchema]
+})

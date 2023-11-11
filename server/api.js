@@ -5,10 +5,12 @@ import OpenAI from 'openai'
 // Fetches data from OpenAI API
 // parameter: Object {project: "Clean my room", description: "My room is a mess"}
 // returns: Array [{project: "Gather cleaning supplies"}, ...] OR null if error in API request
-async function getDataFromOpenAI (project) {
-        const response = await requestDataFromOpenAI(project.name, project.description);
+async function getDataFromOpenAI (request) {
+    console.log(request)
+        const response = await requestDataFromOpenAI(request.project, request.description);
         if (!response) return null;
 
+        console.log(response)
         const data = formatResponse(response.choices[0].text);
 
         // console.log('data: ', data)
@@ -16,7 +18,7 @@ async function getDataFromOpenAI (project) {
 };
 
 // requests data from OpenAI API
-async function requestDataFromOpenAI (name, description) {
+async function requestDataFromOpenAI (name, description=null) {
     const openai = new OpenAI({
         apiKey: API_KEY,
     });
@@ -29,7 +31,7 @@ async function requestDataFromOpenAI (name, description) {
             max_tokens:140,
             top_p:1,
             frequency_penalty:0,
-            presence_penalty:0.4
+            presence_penalty:0
         });
         // console.log('response: ', response)
 

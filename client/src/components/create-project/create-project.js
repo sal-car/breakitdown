@@ -2,129 +2,122 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './styles.css'
-import getBreakdown from '../../api-service.js'
+import getBreakdown, { sendToServer } from '../../api-service.js'
 import {v4 as uuidv4} from 'uuid'
+import moment from 'moment'
 
 
-export const CreateProject = function () {
+export const CreateProject = function ({toggleCreateModal, projects, setProjects}) {
     const [projectData, setprojectData] = useState({
         project: "",
-        date: "",
-        description: ""
+        date: new Date(),
+        description: "",
+        id: uuidv4(),
+        tasks: []
     });
-
-
-
     const [steps, setSteps] = useState([])
-
-
-   
 
     // Creating a step
     // if the project is provided (from api), add it to project prop, otherwise initialise as empty
-    const createStep = () => {
+    const createStep = function () {
         const uuid = uuidv4()
-        setSteps([...steps, {project: '', id: uuid}])
-    
-        console.log(steps)
+        setSteps([...steps, {project: '', id: uuid, date: new Date()}])
+        }
+
+    const deleteStep = function (id) {
+        setSteps(steps.filter((step) => step.id != id))
     }
 
     // Breaking the project down
-    const breakItDown = async () => {
-        let updatedEntry = {}
-        // TODO get data from apiservice
+    const breakItDown = async function () {
+        // get data from apiservice
         try {
             const data = await getBreakdown(projectData)
-
             const newState = data.map((entry) => {
                 const uuid = uuidv4()
-                return {project: entry.project, id: uuid}
+                return {project: entry.project, id: uuid, date: new Date()}
             })
-            console.log('newstate: ', newState)
             setSteps([...steps, ...newState])
-            console.log(data)
-            console.log('steps: ', steps)
-            // data.forEach((entry) => {
-            //     updatedEntry['project'] = entry.project
-            //     updatedEntry['id'] = Date.now()
-            //     setSteps([...steps, updatedEntry])
-            // })
         } catch (error) {
             console.log(error)
         }
-
-
-
-
-
-
-
-        // TODO for each data entry, create a step with project data
+    }
+    
+    // Saving project
+    const saveProject = async function (e) {
+        e.preventDefault()
+        setProjects([...projects, {project: projectData.project, date: projectData, id: projectData.id, tasks: [...steps]}])
+        console.log(projects)
+        const result = await sendToServer({...projectData, tasks: [...steps]})
     }
 
 
-
-    const [startDate, setStartDate] = useState(new Date());
-
-    function handleChange (event) {
+    // Handling change in input fields
+    const handleInputChange = function (event) {
         const name = event.target.name;
         const value = event.target.value;
 
         if (name == 'project-name') {
-            setprojectData((prev) => ({...prev, project: event.target.value}))
+            setprojectData((prev) => ({...prev, project: value}))
         } else if (name == 'project-description') {
-            setprojectData((prev) => ({...prev, description: event.target.value}))
+            setprojectData((prev) => ({...prev, description: value}))
 
         } else {
             setSteps(
-                steps.map((step) => {
-                    if (name == step.id) {
-                        return {...step, project: event.target.value}
-                    } else {
-                        return step;
-                    }
-                })
-
+                steps.map((step) => name == step.id ? {...step, project: value} : step)
             )
-        }
-
-                
+        }    
+        console.log(steps)            
     }
 
+
+    // Handling change in step date fields 
+    const handleDateChange = function (date, id) {
+        console.log(projectData)
+        setSteps(steps.map((step) => step.id == id ? {...step, date: new Date(date)} : step))
+    }
 
 
     return ( 
     <div className='CreateProject'>	
-        <form className="create-project-form"> 
-            <div className="name-date">
-                <input type="text" className="project-name" onChange={handleChange} name="project-name" value={projectData.project} placeholder="What's the goal?"/>
-                <DatePicker closeOnScroll={true} showIcon showTimeSelect dateFormat="Pp"  selected={startDate} onChange={(date) => setStartDate(date)} />
-            </div>
-            <textarea placeholder="Would you like to expand on that?" className="project-description" onChange={handleChange} name="project-description" value={projectData.description}/>
-            <input type="submit" className="submit-btn" onChange={handleChange} name="save-project"/>
+        <div className="header">
+            <h1 className="create-project-header">Create project</h1>
+            <button onClick={toggleCreateModal} className="close-modal">X</button>
+        </div>
+        <form onSubmit={saveProject} className="create-project-form">
+            <div className="input-area">
+                <div className="left name-description">
+                    <input type="text" className="project-name" onChange={handleInputChange} name="project-name" value={projectData.project} placeholder="What's the goal?"/>
+                    <textarea placeholder="Would you like to expand on that?" className="project-description" onChange={handleInputChange} name="project-description" value={projectData.description}/>
+                </div>
+                <div className="right">
+                    <DatePicker className="project-date"closeOnScroll={true} showIcon showTimeSelect dateFormat="Pp"  selected={new Date(projectData.date)} onChange={(date) => setprojectData({...projectData, date: new Date(date)})} />
+                </div>
+            </div> 
+            <input  type="submit" className="submit-btn" onChange={handleInputChange} name="save-project"/>
         </form>
         <div className="add-step-btns">
             <button onClick={breakItDown}>Break it down</button>
-            <button onClick={createStep}>Add step</button>
         </div>
         <div className="steps-container">
             {
                 steps.map((step, index) => {
                     return (
-                        <div key={index}>
+                        <div className="step" key={index}>
                             <form className="create-project-form"> 
                                 <div className="name-date">
-                                    <input type="text" className="project-name" onChange={handleChange} value={step.project} name={step.id} placeholder={index+1}/>
-                                    <DatePicker closeOnScroll={true} showIcon showTimeSelect dateFormat="Pp"  selected={startDate} onChange={(date) => setStartDate(date)} />
+                                    <input type="text" className="step-name" onChange={handleInputChange} value={step.project} name={step.id} placeholder={index+1}/>
+                                    <DatePicker showTimeSelect onChange={(e) => handleDateChange(e, step.id)} className="step-date" closeOnScroll={true} showIcon dateFormat="Pp" selected={new Date(step.date)} />
                                 </div>
-                                <div className="add-step-btns">
-                                <button>Add step</button>
+                                <div className="delete-step">
+                                <button onClick={() => deleteStep(step.id)} class="delte-step-btn">X</button>
                                 </div>
                             </form>
                         </div>
                     )
                 })
             }
+            <button onClick={createStep}>Add step</button>
         </div>
     </div>
     )
