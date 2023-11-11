@@ -188,6 +188,15 @@ button {
   font-weight: bold;
 }
 
+
+/* PROJECT INFO MODAL */
+.ProjectInfo {
+  height: 200px;
+  background-color: aliceblue;
+  width: 50vw;
+}
+
+
 /* CREATE PROJECT MODAL */
 
 

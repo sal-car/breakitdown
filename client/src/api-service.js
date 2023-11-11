@@ -38,7 +38,7 @@ export const sendToServer = async function (project) {
     }
 }
 
-export const getProjectsFromServer = async function (project) {
+export const getProjectsFromServer = async function () {
     try {
         const response = await fetch(BASE_URL + '/projects', {
             method: 'GET',
@@ -47,6 +47,22 @@ export const getProjectsFromServer = async function (project) {
         return result;
     } catch (error) {
         console.log('Error when sending project to server: ', error)
+    }
+}
+
+export const deleteProject = async function (project) {
+    try {
+        const response = await fetch(BASE_URL + '/projects', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(project)
+        });
+        const result = await response.JSON()
+        return result;
+    } catch (error) {
+        console.log('Error in apiservice when deleting project: ', error)
     }
 }
 

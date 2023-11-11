@@ -28,8 +28,9 @@ export const TaskDashboard = function ({projects}) {
             <div className="info">
             <h1 className="dashboard-header">Tasks</h1>
             <form>
-                <select onChange={filterByProject}>
-                    <option value="all">All tasks</option>
+                <label for="project-select">Filter by project</label>
+                <select name="project-select" onChange={filterByProject}>
+                    <option value="all">All projects</option>
                     { projects.map((project) => {
                            return <option value={project.id}>{project.project}</option> 
                     })

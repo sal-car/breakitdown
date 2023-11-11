@@ -92,7 +92,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
         <form onSubmit={saveProject} className="create-project-form">
             <div className="input-area">
                 <div className="left name-description">
-                    <input type="text" className="project-name" onChange={handleInputChange} name="project-name" value={projectData.project} placeholder="What's the goal?"/>
+                    <input required type="text" className="project-name" onChange={handleInputChange} name="project-name" value={projectData.project} placeholder="What's the goal?"/>
                     <textarea placeholder="Would you like to expand on that?" className="project-description" onChange={handleInputChange} name="project-description" value={projectData.description}/>
                 </div>
                 <div className="right">
@@ -111,7 +111,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
                         <div className="step" key={index}>
                             <form className="create-project-form"> 
                                 <div className="name-date">
-                                    <input type="text" className="step-name" onChange={handleInputChange} value={step.project} name={step.id} placeholder={index+1}/>
+                                    <input required type="text" className="step-name" onChange={handleInputChange} value={step.project} name={step.id} placeholder={index+1}/>
                                     <DatePicker showTimeSelect onChange={(e) => handleDateChange(e, step.id)} className="step-date" closeOnScroll={true} showIcon dateFormat="Pp" selected={new Date(step.date)} />
                                 </div>
                                 <div className="delete-step">

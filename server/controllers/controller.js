@@ -28,11 +28,8 @@ export async function postProject (req, res) {
 }
 
 export async function getProjects (req, res) {
-    console.log(res)
-    console.log('get reached')
     try {
         const response = await db.find({});
-        console.log(response)
         res.status(201);
         res.send(response);
     } catch (err) {
@@ -41,4 +38,17 @@ export async function getProjects (req, res) {
     }
 }
 
+export async function deleteProject (req, res) {
+    console.log(req.body)
+    try {
+        const response = await db.deleteOne({id: req.body.id})
+        console.log('deleted: ', response);
+        res.status(201);
+        res.send(response);
+    } catch (error) {
+        console.log('Error when deleting project from db: ', error)
+    }
+}
+
+// await db.collection('inventory').deleteOne({ status: 'D' });
 

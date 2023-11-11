@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import {Project} from '../project&task/project'
 import { useEffect } from 'react'
+import { ProjectInfo } from '../project&task/project-info'
+import { deleteProject } from '../../api-service'
 
 export const ProjectDashboard = function ({projects, setProjects}) {
   const [projectModal, toggleProjectModal] = useState(false)
-  const allProjects = [...projects];
+  const [clickedProject, setClickedProject] = useState({})
   const [showingProjects, setShowingProjects] = useState(projects)
   
   useEffect(() => {
@@ -12,8 +14,17 @@ export const ProjectDashboard = function ({projects, setProjects}) {
   }, [projects])
 
 
-  const handleProjectCardClick = function (id) {
+  const handleProjectClick = function (project) {
     toggleProjectModal(!projectModal)
+    setClickedProject(project)
+
+  }
+
+  const handleDeleteClick = function (id) {
+    const deleteThis = projects.find((project) => project.id === id)
+    setProjects(projects.filter((project) => project.id != id))
+    deleteProject(deleteThis)
+
   }
 
 
@@ -50,7 +61,6 @@ export const ProjectDashboard = function ({projects, setProjects}) {
         }
 
         // FILTERING PROJECTS WITH DATE THIS WEEK
-        console.log('all: ', allProjects)
         const thisWeeksProjects = projects.filter((project) => {
           let projectDate = new Date(project.date);
 
@@ -87,6 +97,13 @@ export const ProjectDashboard = function ({projects, setProjects}) {
           <div className="dashboard-header">
             <h1>Projects</h1>
           </div>
+        {/* { */}
+          {/* projectModal ? */}
+          <ProjectInfo project={clickedProject} toggleProjectModal={toggleProjectModal}></ProjectInfo>
+          {/* : */}
+          {/* <div></div> */}
+
+        {/* } */}
           <div className="right-info">
               <form action="">
                 <select onChange={filterProjects} name="filter">
@@ -102,7 +119,7 @@ export const ProjectDashboard = function ({projects, setProjects}) {
             { showingProjects && showingProjects.length ? 
               showingProjects.map((project, index) => {
                 return (
-                    <Project key={index} handleProjectCardClick={() => handleProjectCardClick(project)} project={project}></Project>
+                    <Project handleDeleteClick={() => handleDeleteClick(project.id)} onProjectClick={() => handleProjectClick(project)} key={index} project={project}></Project>
                 )
               })
               :
