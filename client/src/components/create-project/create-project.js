@@ -51,6 +51,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
         e.preventDefault()
         setProjects([...projects, {project: projectData.project, date: projectData, id: projectData.id, tasks: [...steps]}])
         const result = await sendToServer({...projectData, tasks: [...steps]})
+        toggleCreateModal()
     }
 
 
