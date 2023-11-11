@@ -5,12 +5,9 @@ export const TaskDashboard = function ({projects}) {
     const [tasks, setTasks] = useState([])
     
     useEffect(() => {
-        const taskList = projects.filter((project) => project.tasks?.length).map((project) => project.tasks)
-        setTasks((prev) => [...prev, ...taskList])
-        console.log('list', taskList)
-
+        const taskList = projects.filter((project) => project.tasks?.length).map((project) => project.tasks).flat()
+        setTasks([...taskList])
     }, [projects])
-
 
     return (
         <div className="TaskDashboard">
@@ -19,7 +16,7 @@ export const TaskDashboard = function ({projects}) {
             { tasks.length ? 
                 tasks.map((task) =>{
                     return (
-                        <Task task={task}></Task>
+                        <Task projects={projects} task={task}></Task>
                     )
                 })
                 :

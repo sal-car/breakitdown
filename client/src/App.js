@@ -103,6 +103,7 @@ function App() {
       ></Navigation>
       {openNavbar ?
         <Navbar 
+        setOpenNavbar={setOpenNavbar}
         openProjectDashboard={openProjectDashboard} 
         setOpenProjectDashboard={setOpenProjectDashboard}
         openTaskDashboard={openTaskDashboard} 
