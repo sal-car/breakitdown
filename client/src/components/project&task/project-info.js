@@ -13,6 +13,11 @@ export const ProjectInfo = function ({project}) {
                 :
                 <div></div>
             }
+            {
+                project.tasks.map((task) => {
+                    <div className="project-info-task"></div>
+                })
+            }
         </div>
     )
 
