@@ -97,13 +97,13 @@ export const ProjectDashboard = function ({projects, setProjects}) {
           <div className="dashboard-header">
             <h1>Projects</h1>
           </div>
-        {/* { */}
-          {/* projectModal ? */}
+        {
+          projectModal ?
           <ProjectInfo project={clickedProject} toggleProjectModal={toggleProjectModal}></ProjectInfo>
-          {/* : */}
-          {/* <div></div> */}
+          :
+          null
 
-        {/* } */}
+        } 
           <div className="right-info">
               <form action="">
                 <select onChange={filterProjects} name="filter">

@@ -1,8 +1,8 @@
-export const Project = function ({project, handleProjectClick, handleDeleteClick}) {
+export const Project = function ({project, onProjectClick, handleDeleteClick}) {
 
 
     return (
-        <button onClick={handleProjectClick} className="Project">
+        <button onClick={onProjectClick} className="Project">
             <div>
                 <button onClick={(handleDeleteClick)}>Delete project</button>
             </div>
