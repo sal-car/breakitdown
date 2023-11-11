@@ -21,7 +21,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
     // if the project is provided (from api), add it to project prop, otherwise initialise as empty
     const createStep = function () {
         const uuid = uuidv4()
-        setSteps([...steps, {project: '', id: uuid, date: new Date(), parent: projectData.id}])
+        setSteps([...steps, {project: '', id: uuid, date: new Date(), parent: projectData.id, completed: false}])
         }
 
     

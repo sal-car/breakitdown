@@ -4,7 +4,8 @@ const taskSchema = new mongoose.Schema({
     project: String,
     id: String,
     date: Date,
-    parent: String
+    parent: String,
+    completed: Boolean
 })
 
 export const projectSchema = new mongoose.Schema({

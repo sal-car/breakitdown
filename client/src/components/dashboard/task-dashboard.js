@@ -41,7 +41,7 @@ export const TaskDashboard = function ({projects}) {
             { tasks.length ? 
                 tasks.map((task, index) =>{
                     return (
-                        <Task key={index} projects={projects} task={task}></Task>
+                        <Task key={index} projects={projects} task={task} setTasks={setTasks} tasks={tasks}></Task>
                     )
                 })
                 :
