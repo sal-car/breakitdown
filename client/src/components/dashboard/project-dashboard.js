@@ -1,15 +1,11 @@
 import { useState } from 'react'
-import {Project} from '../project/project'
-import { ProjectInfo } from '../project/project-info'
-import { useRef } from 'react'
+import {Project} from '../project&task/project'
 import { useEffect } from 'react'
 
 export const ProjectDashboard = function ({projects, setProjects}) {
   const [projectModal, toggleProjectModal] = useState(false)
   const allProjects = [...projects];
   const [showingProjects, setShowingProjects] = useState(projects)
-  console.log(showingProjects)
-  console.log([...projects])
   
   useEffect(() => {
     setShowingProjects(projects)
@@ -17,8 +13,6 @@ export const ProjectDashboard = function ({projects, setProjects}) {
 
 
   const handleProjectCardClick = function (id) {
-    console.log(id)
-    console.log(projects)
     toggleProjectModal(!projectModal)
   }
 
@@ -38,9 +32,8 @@ export const ProjectDashboard = function ({projects, setProjects}) {
           new Date(project.date).getMonth() == today.getMonth() &&
           new Date(project.date).getYear() == today.getYear()
         })
-        console.log(todaysProjects)
-        setShowingProjects([...todaysProjects])
 
+        setShowingProjects([...todaysProjects])
         break;
 
       case "this-week":
@@ -55,7 +48,6 @@ export const ProjectDashboard = function ({projects, setProjects}) {
           week.push(nextDay);
           counter++;
         }
-        console.log('weekarray', week)
 
         // FILTERING PROJECTS WITH DATE THIS WEEK
         console.log('all: ', allProjects)
@@ -72,11 +64,9 @@ export const ProjectDashboard = function ({projects, setProjects}) {
         }
         )
 
-        setShowingProjects([...thisWeeksProjects])
-
-        console.log(thisWeeksProjects)
-        
+        setShowingProjects([...thisWeeksProjects])        
         break;
+
       case "this-month":
         const thisMonthsProjects = projects.filter((project) => {
           return new Date(project.date).getMonth() == today.getMonth() &&
@@ -84,7 +74,6 @@ export const ProjectDashboard = function ({projects, setProjects}) {
         })
 
         setShowingProjects([...thisMonthsProjects]);
-
         break;
     
       default:
@@ -95,11 +84,11 @@ export const ProjectDashboard = function ({projects, setProjects}) {
     return (
       <div className="Dashboard">
         <div className="info"> 
-          <div className="left-info">
+          <div className="dashboard-header">
             <h1>Projects</h1>
           </div>
           <div className="right-info">
-              <form action={filterProjects}>
+              <form action="">
                 <select onChange={filterProjects} name="filter">
                   <option  value="all">All</option>
                   <option  value="today">Today</option>

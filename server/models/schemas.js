@@ -3,7 +3,8 @@ import mongoose from "mongoose"
 const taskSchema = new mongoose.Schema({
     project: String,
     id: String,
-    date: Date
+    date: Date,
+    parent: String
 })
 
 export const projectSchema = new mongoose.Schema({

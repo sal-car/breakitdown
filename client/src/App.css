@@ -160,7 +160,7 @@ button {
   margin-bottom: 100px;
 }
 
-.left-info {
+.dashboard-header {
   grid-column-start: 2 / span 1;
 }
 

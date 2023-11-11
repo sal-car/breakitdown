@@ -7,6 +7,7 @@ import { Navbar } from './components/navigation/navbar.js';
 import { getProjectsFromServer } from './api-service.js';
 import {v4 as uuidv4} from 'uuid'
 import { useEffect } from 'react';
+import { TaskDashboard } from './components/dashboard/task-dashboard.js';
 
 
 const mockObj = [
@@ -66,6 +67,8 @@ function App() {
   const [projects, setProjects] = useState([]);
   const [openCreateModal, setOpenCreateModal] = useState(false)
   const [openNavbar, setOpenNavbar] = useState(false)
+  const [openProjectDashboard, setOpenProjectDashboard] = useState(true)
+  const [openTaskDashboard, setOpenTaskDashboard] = useState(false)
 
   const handleNavbarClick = function () {
     setOpenNavbar(!openNavbar)
@@ -86,22 +89,41 @@ function App() {
       } catch (error) {
         console.log("Error when rendering projects: ", error)
       }
-      console.log("done")
     }
-    
+
     fetchOldProjects()
     }, [])
 
 
   return (
     <div className="App">
-      <Navigation handleNavbarClick={handleNavbarClick} toggleCreateModal={toggleCreateModal}></Navigation>
+      <Navigation 
+      handleNavbarClick={handleNavbarClick} 
+      toggleCreateModal={toggleCreateModal}
+      ></Navigation>
       {openNavbar ?
-        <Navbar ></Navbar>
+        <Navbar 
+        openProjectDashboard={openProjectDashboard} 
+        setOpenProjectDashboard={setOpenProjectDashboard}
+        openTaskDashboard={openTaskDashboard} 
+        setOpenTaskDashboard={setOpenTaskDashboard}
+        >
+        </Navbar>
         :
         <div></div>
       }
-      <ProjectDashboard projects={projects} setProjects={setProjects}/>
+      {
+        openProjectDashboard ?
+        <ProjectDashboard projects={projects} setProjects={setProjects}/>
+        :
+        <div></div>
+      }
+      {
+        openTaskDashboard ?
+        <TaskDashboard projects={projects}></TaskDashboard>
+        :
+        <div></div>
+      }
       {
         openCreateModal ? 
           <CreateProject projects={projects} setProjects={setProjects} toggleCreateModal={toggleCreateModal} className="CreateProject"></CreateProject>

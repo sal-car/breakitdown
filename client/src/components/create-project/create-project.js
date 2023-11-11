@@ -21,9 +21,12 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
     // if the project is provided (from api), add it to project prop, otherwise initialise as empty
     const createStep = function () {
         const uuid = uuidv4()
-        setSteps([...steps, {project: '', id: uuid, date: new Date()}])
+        setSteps([...steps, {project: '', id: uuid, date: new Date(), parent: projectData.id}])
         }
 
+    
+
+    
     const deleteStep = function (id) {
         setSteps(steps.filter((step) => step.id != id))
     }
@@ -47,7 +50,6 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
     const saveProject = async function (e) {
         e.preventDefault()
         setProjects([...projects, {project: projectData.project, date: projectData, id: projectData.id, tasks: [...steps]}])
-        console.log(projects)
         const result = await sendToServer({...projectData, tasks: [...steps]})
     }
 
@@ -58,23 +60,25 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
         const value = event.target.value;
 
         if (name == 'project-name') {
-            setprojectData((prev) => ({...prev, project: value}))
-        } else if (name == 'project-description') {
-            setprojectData((prev) => ({...prev, description: value}))
+            setprojectData((prev) => ({...prev, project: value}));
+        } 
+        
+        else if (name == 'project-description') {
+            setprojectData((prev) => ({...prev, description: value}));
 
-        } else {
+        } 
+        
+        else {
             setSteps(
                 steps.map((step) => name == step.id ? {...step, project: value} : step)
             )
         }    
-        console.log(steps)            
     }
 
 
     // Handling change in step date fields 
     const handleDateChange = function (date, id) {
-        console.log(projectData)
-        setSteps(steps.map((step) => step.id == id ? {...step, date: new Date(date)} : step))
+        setSteps(steps.map((step) => step.id == id ? {...step, date: new Date(date)} : step));
     }
 
 

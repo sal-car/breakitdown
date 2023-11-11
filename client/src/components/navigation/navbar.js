@@ -1,4 +1,10 @@
-export const Navbar = function () {
+export const Navbar = function ({openProjectDashboard, setOpenProjectDashboard, openTaskDashboard, setOpenTaskDashboard}) {
+
+    const goToTaskDashboard = function () {
+        setOpenProjectDashboard(false)
+        setOpenTaskDashboard(true)
+    }
+
     return (
         <div className="side-navbar">
             <ul className="nav-list">
@@ -9,7 +15,7 @@ export const Navbar = function () {
                     <button className="nav-option">Dashboard</button>
                 </li>
                 <li className="nav-list-item">
-                    <button className="nav-option">Tasks</button>
+                    <button onClick={goToTaskDashboard} className="nav-option">Tasks</button>
 
                 </li>
                     <h2 className="nav-header" >Create</h2>
