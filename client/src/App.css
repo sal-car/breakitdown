@@ -1,232 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .App {
-  /* background-color: whitesmoke; */
-
-  height: fit-content;
-  min-height: 100vh;
-  position: relative;
-
-
+  height: 100vh;
+  background: radial-gradient(92.57% 85.81% at 61.59% 3.32%, rgba(203, 174, 241, 0.49) 0%, rgba(203, 174, 241, 0.38) 37.1%, rgba(203, 174, 241, 0.00) 100%, rgba(203, 174, 241, 0.23) 100%), radial-gradient(78.3% 33.3% at -6.29% 39.09%, rgba(203, 174, 241, 0.49) 0%, rgba(203, 174, 241, 0.00) 100%), linear-gradient(241deg, rgba(209, 248, 251, 0.40) 16.78%, rgba(174, 241, 225, 0.00) 80.44%, rgba(182, 251, 255, 0.00) 80.44%), linear-gradient(287deg, rgba(203, 174, 241, 0.03) 14.44%, rgba(214, 191, 244, 0.03) 14.45%, rgba(255, 255, 255, 0.00) 36.9%), linear-gradient(273deg, rgba(246, 211, 211, 0.64) 7.39%, rgba(255, 255, 255, 0.00) 46.61%), linear-gradient(180deg, rgba(246, 211, 211, 0.00) 63.58%, rgba(246, 211, 211, 0.80) 121.78%);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-}
-
-button {
-  cursor: pointer;
-}
-
-.header,
-.left-header,
-.right-header,
-.middle-header,
-.nav-icon {
-  display: flex;
-}
-
-/* NAVIGATION */
-
-  /* HEADER */
-
-.header {
-  height: 10vh;
-  width: 100%;
-  background-color: black;
-  justify-content: space-between;
-}
-
-.left-header {
-  justify-content: space-around;
-  align-items: center;
-  width: 33%;
-  min-width: 300px;
-}
-
-.middle-header {
-  justify-content: center;
-  align-items: center;
-}
-
-.middle-header {
-  width: 33%;
-  min-width: 140px;
-}
-
-.right-header {
-  width: 33%;
-  justify-content: flex-end;
-  min-width: 110px;
-}
-
-.new-project-btn {
-  background-color: black;
-  color: white;
-  border: none;
-  margin-right: 40px;
-  font-size: 1em;
-}
-
-.logo {
-  color: white;
-  font-size: 1.5em;
-}
-
-.nav-icon {
-  flex-direction: column;
-  gap: 10px;
-  margin-right: 5px;
-  background-color: black;
-  border: none;
-  cursor: pointer;
-}
-
-.nav-line {
-  background-color: white;
-  width: 30px;
-  height: 2px;
-}
-
-
-
-.search-bar {
-  width: 300px;
-  /* padding-left: 5px; */
-  height: 15px;
-}
-
-/* SIDE NAVBAR */
-.side-navbar {
-  background-color: black;
-  position: absolute;
-  height: 100%;
-  min-width: 250px;
-  max-width: 250px;
-  font-weight: 400;
-  background-color: black;
-
-
-}
-
-.nav-list {
-  color: white;
-  font-weight: 400;
-  height: 100%;
-  margin-top: 20px;
-  margin-left: 20px;
-  list-style: none;
-  
-}
-
-.nav-list-item {
-  margin: 10px;
-  
-}
-
-.nav-option {
-  color: white;
-  border: none;
-  margin-left: 30px;
-  font-size: 1.2em;
-  font-weight: 400;
-  margin: 10px;
-  background-color: black;
-  list-style: none;
-}
-
-.nav-header {
-  margin-left: 10px;
-  margin-top: 30px;
-}
-
-
-
-/* DASHBOARD */
-.Dashboard {
-  margin-left: 280px;
-  /* margin-top: 100px; */
-  width: 75%;
-  /* display: grid;
-  width: 100%;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr); */
-  gap: 10px;
-}
-
-.info {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 100px;
-}
-
-.dashboard-header {
-  grid-column-start: 2 / span 1;
-}
-
-
-
-.main-dashboard {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:20px;
-}
-
-.project-info {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  gap: 20px;
-}
+/* .Dashboard {
+background-color: rgba(255, 255, 255, 0.5);
+font-size: 0.8em;
+  border-radius: 20px;
+  /* text-align: center; */
+  /* width: 75vw;
+} */ 
 
 .Project {
-  box-shadow: 1px 2px 1px black;
-  padding: 20px;
+  /* background-color: blue; */
 }
 
-.next {
-  font-weight: bold;
+.select {
+  vertical-align: bottom;
 }
 
-
-/* PROJECT INFO MODAL */
-.ProjectInfo {
-  height: 200px;
-  background-color: aliceblue;
-  width: 50vw;
-}
-
-
-/* CREATE PROJECT MODAL */
-
-
-.CreateProject {
-  width: 60vw;
-  min-height: 70vh;
-  min-width: fit-content;
-  height: fit-content;
-  position: absolute;
-  left: 50%;
-  top: 50%; 
-  margin-left: -30vw;
-  margin-top: -40vh;
-}
-
-.create-project-header {
-  color: white;
-
-}
-
-.close-modal {
-  background-color: black;
-  color: white;
-  border: none;
-  margin-right: 20px;
-  font-size: 1.5em;
-  cursor: pointer;
-}
-
-.step-name {
-  height: fit-content;
-  width: 500px;
+.right-info {
+  height: fit-content
 }

@@ -3,6 +3,7 @@ import {Project} from '../project&task/project'
 import { useEffect } from 'react'
 import { ProjectInfo } from '../project&task/project-info'
 import { deleteProject } from '../../api-service'
+import { TimelineBox } from './timeline'
 
 export const ProjectDashboard = function ({projects, setProjects}) {
   const [projectModal, toggleProjectModal] = useState(false)
@@ -93,10 +94,20 @@ export const ProjectDashboard = function ({projects, setProjects}) {
   }
     
     return (
-      <div className="Dashboard">
+      <div className="main flex">
+
+      <div className="Dashboard bg-white/30 rounded-xl h-full p-5 w-3/4">
         <div className="info"> 
-          <div className="dashboard-header">
-            <h1>Projects</h1>
+          <div className="dashboard-header flex justify-between gap-10 mb-5">
+              <h1 className='text-2xl font-bold light:text-white'>Projects</h1>
+                <form action="">
+                  <select className='bg-white/0 font-semibold text-gray-900 text-m rounded-lg outline-none  w-full p-3' onChange={filterProjects} name="filter">
+                    <option  value="all">All</option>
+                    <option  value="today">Today</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                  </select>
+                </form>
           </div>
         {
           projectModal ?
@@ -105,18 +116,8 @@ export const ProjectDashboard = function ({projects, setProjects}) {
           null
 
         } 
-          <div className="right-info">
-              <form action="">
-                <select onChange={filterProjects} name="filter">
-                  <option  value="all">All</option>
-                  <option  value="today">Today</option>
-                  <option value="this-week">This week</option>
-                  <option value="this-month">This month</option>
-                </select>
-              </form>
-          </div>
         </div>
-          <div className="main-dashboard">
+        <div className="main-dashboard grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm-grid-cols-1 gap-2 ">
             { showingProjects && showingProjects.length ? 
               showingProjects.map((project, index) => {
                 return (
@@ -124,10 +125,14 @@ export const ProjectDashboard = function ({projects, setProjects}) {
                 )
               })
               :
-              <div></div>
+              <div className="flex justify-center w-full">
+                <p>Woops, no projects here</p>
+              </div>
             }
-          </div>
+        </div>
       </div>
+        <TimelineBox projects={projects}></TimelineBox>
+    </div>
     );
   }
   

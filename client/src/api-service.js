@@ -66,6 +66,22 @@ export const deleteProject = async function (project) {
     }
 }
 
+export const toggleCompleted = async function (project) {
+    try {
+        const response = await fetch(BASE_URL + '/projects', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(project)
+        });
+        console.log(response)
+        return response;
+    } catch (error) {
+        console.log('Error in apiservice when updating project: ', error)
+    }
+}
+
 export default getBreakdown;
 // const testProject = {project: "Wash my dogs", description: "Lulu needs a bath"}
 // getBreakdown(testProject)

@@ -23,6 +23,8 @@ export const TaskDashboard = function ({projects}) {
         }
     }
 
+
+
     return (
         <div className="TaskDashboard Dashboard">
             <div className="info">

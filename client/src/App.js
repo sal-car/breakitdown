@@ -65,10 +65,10 @@ const mockObj = [
 ]
 function App() {
   const [projects, setProjects] = useState([]);
-  const [openCreateModal, setOpenCreateModal] = useState(false)
+  const [openCreateModal, setOpenCreateModal] = useState(true)
   const [openNavbar, setOpenNavbar] = useState(false)
   const [openProjectDashboard, setOpenProjectDashboard] = useState(true)
-  const [openTaskDashboard, setOpenTaskDashboard] = useState(false)
+  const [openTaskDashboard, setOpenTaskDashboard] = useState(true)
 
   const handleNavbarClick = function () {
     setOpenNavbar(!openNavbar)
@@ -96,8 +96,8 @@ function App() {
 
 
   return (
-    <div className="App">
-      <Navigation 
+    <div className="App p-20">
+      {/* <Navigation 
       handleNavbarClick={handleNavbarClick} 
       toggleCreateModal={toggleCreateModal}
       ></Navigation>
@@ -112,14 +112,14 @@ function App() {
         </Navbar>
         :
         <div></div>
-      }
+      } */}
       {
         openProjectDashboard ?
         <ProjectDashboard projects={projects} setProjects={setProjects}/>
         :
         <div></div>
       }
-      {
+     {
         openTaskDashboard ?
         <TaskDashboard projects={projects}></TaskDashboard>
         :
@@ -130,7 +130,7 @@ function App() {
           <CreateProject projects={projects} setProjects={setProjects} toggleCreateModal={toggleCreateModal} className="CreateProject"></CreateProject>
           :
           <div></div>
-      }
+      } 
     </div>
   );
 }

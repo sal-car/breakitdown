@@ -1,6 +1,8 @@
 import Checkbox from '@mui/material/Checkbox';
 import CheckCircleOutlineSharpIcon from '@mui/icons-material/CheckCircleOutlineSharp';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import {toggleCompleted} from '../../api-service'
+
 
 export const Task = function ({projects, task, setTasks, tasks}) {
 
@@ -17,19 +19,29 @@ export const Task = function ({projects, task, setTasks, tasks}) {
     }
 
     const handleCheckChange = function (id) {
-        setTasks([...tasks.map((task) => {
-            if (task.id === id) {
-                task.completed = true
-            }
-            return task;
-        })])
-        console.log(tasks)
+        saveCompletedStatus(task)
+        // console.log(tasks)
+    }
+
+    const saveCompletedStatus = async function () {
+        try {
+            console.log(task.id)
+            const result = await toggleCompleted(task);
+            console.log(result);
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
         <div className="Task">
             <div className="task-left">
-            <Checkbox onChange={() => handleCheckChange(task.id)} checkedIcon={<CheckCircleIcon/>} color="success"/>
+                {
+                    task.completed === true ? 
+                    <Checkbox defaultChecked onChange={() => handleCheckChange(task.id)} checkedIcon={<CheckCircleIcon/>} color="success"/>
+                    :
+                    <Checkbox onChange={() => handleCheckChange(task.id)} checkedIcon={<CheckCircleIcon/>} color="success"/>
+                }
             <h3>{task.project}</h3>
             <p>{getParentProject(task.parent).project}</p>
             </div>
