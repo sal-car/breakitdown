@@ -121,7 +121,7 @@ function App() {
       }
      {
         openTaskDashboard ?
-        <TaskDashboard projects={projects}></TaskDashboard>
+        <TaskDashboard setProjects={setProjects} projects={projects}></TaskDashboard>
         :
         <div></div>
       }

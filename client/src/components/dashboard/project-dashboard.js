@@ -28,8 +28,6 @@ export const ProjectDashboard = function ({projects, setProjects}) {
 
   }
 
-
-
   const filterProjects = function (e) {
     let today = new Date();
 
@@ -94,9 +92,9 @@ export const ProjectDashboard = function ({projects, setProjects}) {
   }
     
     return (
-      <div className="main flex">
+      <div className="main grid grid-cols-10 w-full">
 
-      <div className="Dashboard bg-white/30 rounded-xl h-full p-5 w-3/4">
+      <div className="Dashboard bg-white/30 rounded-xl h-full p-5 col-span-7">
         <div className="info"> 
           <div className="dashboard-header flex justify-between gap-10 mb-5">
               <h1 className='text-2xl font-bold light:text-white'>Projects</h1>
@@ -130,8 +128,10 @@ export const ProjectDashboard = function ({projects, setProjects}) {
               </div>
             }
         </div>
+      </div >
+      <div className="col-span-3">
+        <TimelineBox  projects={projects}></TimelineBox>
       </div>
-        <TimelineBox projects={projects}></TimelineBox>
     </div>
     );
   }

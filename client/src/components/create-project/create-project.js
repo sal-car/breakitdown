@@ -24,9 +24,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
         setSteps([...steps, {project: '', id: uuid, date: new Date(), parent: projectData.id, completed: false}])
         }
 
-    
 
-    
     const deleteStep = function (id) {
         setSteps(steps.filter((step) => step.id != id))
     }
@@ -49,7 +47,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
     // Saving project
     const saveProject = async function (e) {
         e.preventDefault()
-        setProjects([...projects, {project: projectData.project, date: projectData, id: projectData.id, tasks: [...steps]}])
+        setProjects([...projects, {project: projectData.project, date: projectData.date, id: projectData.id, tasks: [...steps]}])
         const result = await sendToServer({...projectData, tasks: [...steps]})
         toggleCreateModal()
     }

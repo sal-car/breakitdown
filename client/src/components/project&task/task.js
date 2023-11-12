@@ -4,7 +4,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import {toggleCompleted} from '../../api-service'
 
 
-export const Task = function ({projects, task, setTasks, tasks}) {
+export const Task = function ({projects, task, setTasks, tasks, setProjects}) {
 
     const parseTime = function () {
         const date = new Date(task.date)
@@ -18,16 +18,33 @@ export const Task = function ({projects, task, setTasks, tasks}) {
         return project;
     }
 
-    const handleCheckChange = function (id) {
+    const handleCheckChange = function (taskId) {
+        const parentProject = getParentProject(taskId)
+        const updatedTasks = parentProject.tasks.map((task) => {
+            if (task.id === taskId) {
+                task.completed = !task.completed
+            }
+            return task;
+        })
+        const updatedProjects = projects.map((project) => {
+            if (project.id === parentProject.id) {
+                return {
+                    ...project, 
+                    tasks: updatedTasks
+                };
+            } else {
+                return project;
+            }
+            })
+        setProjects(updatedProjects);
+
         saveCompletedStatus(task)
-        // console.log(tasks)
     }
 
     const saveCompletedStatus = async function () {
         try {
             console.log(task.id)
             const result = await toggleCompleted(task);
-            console.log(result);
         } catch (error) {
             console.log(error)
         }

@@ -6,7 +6,6 @@ const BASE_URL = 'http://localhost:3000'
 // returns: Array [{project: "Get Lulu from doggy daycare"}, ...]
 export const getBreakdown = async function (project) {
     // TODO check to see that project has correct format
-    console.log("apiservice obj: ", project)
     try {
         const response = await fetch(BASE_URL + '/breakdown', {
             method: 'POST', 
@@ -75,7 +74,6 @@ export const toggleCompleted = async function (project) {
             },
             body: JSON.stringify(project)
         });
-        console.log(response)
         return response;
     } catch (error) {
         console.log('Error in apiservice when updating project: ', error)

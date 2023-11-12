@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import {Task} from '../project&task/task'
 
-export const TaskDashboard = function ({projects}) {
+export const TaskDashboard = function ({setProjects, projects}) {
     const [tasks, setTasks] = useState([])
     const [Tasks, setShowingTasks] = useState([])
     
@@ -33,8 +33,8 @@ export const TaskDashboard = function ({projects}) {
                 <label for="project-select">Filter by project</label>
                 <select name="project-select" onChange={filterByProject}>
                     <option value="all">All projects</option>
-                    { projects.map((project) => {
-                           return <option value={project.id}>{project.project}</option> 
+                    { projects.map((project, index) => {
+                           return <option key={index} value={project.id}>{project.project}</option> 
                     })
                     }
                 </select>
@@ -44,7 +44,7 @@ export const TaskDashboard = function ({projects}) {
             { tasks.length ? 
                 tasks.map((task, index) =>{
                     return (
-                        <Task key={index} projects={projects} task={task} setTasks={setTasks} tasks={tasks}></Task>
+                        <Task key={index} projects={projects} task={task} setTasks={setTasks} tasks={tasks} setProjects={setProjects}></Task>
                     )
                 })
                 :

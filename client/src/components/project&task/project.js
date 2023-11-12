@@ -17,14 +17,15 @@ export const Project = function ({project, onProjectClick, handleDeleteClick}) {
     const calculateProgress = function () {
         let tasks = 0;
         let completedTasks = 0;
+        
         project.tasks.forEach((task) => {
             tasks++
             if (task.completed === true) {
                 completedTasks++
             }
         })
-        console.log(`${completedTasks}/${tasks}`)
-        return `${completedTasks.toString()}/${tasks.toString()}`
+
+        return completedTasks === 0 ? '0' : `${completedTasks.toString()}/${tasks.toString()}`
     }
 
     const test = '3/4'
