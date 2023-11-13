@@ -41,7 +41,7 @@ export async function getProjects (req, res) {
 
 export async function deleteProject (req, res) {
     try {
-        const response = await 
+        const response = await db.deleteOne({id: req.body.id})
         console.log('deleted: ', response);
         res.status(201);
         res.send(response);
