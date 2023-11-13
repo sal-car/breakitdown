@@ -62,8 +62,8 @@ export const TimelineBox = function (props) {
         timelineList ?
         timelineList.map((project, index) => (
             <TimelineItem key={index}>
-                <TimelineOppositeContent color="text.secondary" sx={{textAlign: 'right'}}> 
-                <p>{formatDate(project)}</p>
+                <TimelineOppositeContent color="text.secondary" sx={{textAlign: 'right'}} > 
+                <p  className="mt-3">{formatDate(project)}</p>
                 </TimelineOppositeContent>
                 <TimelineSeparator>
                     <TimelineDot  color={`${project.completed ? 'success' : 'grey'}`} >
