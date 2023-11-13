@@ -1,7 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
+import {toggleCompleted} from '../../api-service';
 
-export const Project = function ({project}) {
+export const Project = function ({handleDeleteClick, project, projects, setProjects}) {
 
     const convertToTitleCase = function (str) {
         if (!str) {
@@ -13,6 +14,10 @@ export const Project = function ({project}) {
       useEffect(() => {
         calculateProgress()
       }, [project])
+
+      useEffect(() => {
+        setProjectAsCompleted()
+      }, [])
 
 
     const calculateProgress = function () {
@@ -27,6 +32,25 @@ export const Project = function ({project}) {
         })
 
         return completedTasks === 0 ? '1%' : `${(completedTasks / tasks) * 100}%`
+    }
+
+    const setProjectAsCompleted = function () {
+        const progress = calculateProgress()
+        if (progress === '100%') {
+            if (projects) setProjects(() => {
+                return projects.map((proj) => {
+                    if (proj.id === project.id) {
+                        return {
+                            ...project,
+                            completed: true
+                        };
+                    } else {
+                        return proj;
+                    }
+                })
+            });
+        toggleCompleted(project)
+        }
     }
 
     return (

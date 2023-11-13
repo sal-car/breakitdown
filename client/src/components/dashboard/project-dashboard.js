@@ -63,7 +63,7 @@ export const ProjectDashboard = function ({projects, setProjects}) {
             { showingProjects && showingProjects.length ? 
               showingProjects.map((project, index) => {
                 return (
-                    <Project handleDeleteClick={() => handleDeleteClick(project.id)} onProjectClick={() => handleProjectClick(project)} key={index} project={project}></Project>
+                    <Project handleDeleteClick={() => handleDeleteClick(project.id)} onProjectClick={() => handleProjectClick(project)} key={index} project={project} projects={projects} setProjects={setProjects}></Project>
                 )
               })
               :
