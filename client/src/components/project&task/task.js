@@ -3,8 +3,8 @@ import Checkbox from '@mui/material/Checkbox';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import {toggleCompleted} from '../../api-service'
 
-
-export const Task = function ({projects, task, setProjects}) {
+// projects={projects} task={task} setTasks={setTasks} tasks={tasks} setProjects={setProjects}
+export const Task = function ({projects, task, setTasks, setProjects}) {
 
     const parseTime = function () {
         const date = new Date(task.date)
@@ -14,22 +14,23 @@ export const Task = function ({projects, task, setProjects}) {
     }
 
     const getParentProject = function () {
-        console.log(task)
         const project = projects.find((project) => project.id === task.parent);
-        console.log(project)
         return project;
     }
 
     const handleCheckChange = function (taskId) {
         const parentProject = getParentProject(taskId)
+
         const updatedTasks = parentProject.tasks.map((task) => {
             if (task.id === taskId) {
                 task.completed = !task.completed
             }
             return task;
         })
+
         const updatedProjects = projects.map((project) => {
             if (project.id === parentProject.id) {
+                console.log('HERE: ', project)
                 return {
                     ...project, 
                     tasks: updatedTasks
@@ -38,14 +39,13 @@ export const Task = function ({projects, task, setProjects}) {
                 return project;
             }
             })
-        setProjects([...updatedProjects]);
 
-        saveCompletedStatus(task)
-    }
+            saveCompletedStatus(task)
+            setProjects([...updatedProjects]);
+    }       
 
     const saveCompletedStatus = function () {
         try {
-            console.log(task.id)
             toggleCompleted(task);
         } catch (error) {
             console.log(error)
@@ -62,7 +62,7 @@ export const Task = function ({projects, task, setProjects}) {
                         :
                         <Checkbox onChange={() => handleCheckChange(task.id)} checkedIcon={<CheckCircleIcon/>} color="success"/>
                     }
-                    <h3 className="text-gray-800 font-semibold ml-2">{task.project}</h3>
+                    <h3 className="text-gray-800 font-semibold ml-2 mr-2">{task.project}</h3>
 
                 </div>
                 <p className="mr-5 font-semibold text-gray-500 ">{parseTime(task.date)}</p>

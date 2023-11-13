@@ -43,7 +43,7 @@ export const ProjectDashboard = function ({projects, setProjects}) {
               <h1 className='text-2xl font-semibold text-gray-800'>Projects</h1>
               <FilterByDate setShowingProjects={setShowingProjects} projects={projects} ></FilterByDate>
           </div>
-        <button onClick={ () => setShowOption(!showOption)}  className='mb-3 text-m font-semibold text-gray-900'>
+        <button onClick={ () => setShowOption(!showOption)}  className='mb-2 text-m font-semibold text-gray-900'>
         {showOption ? 
         '👇 Show less'
         : 
@@ -58,7 +58,8 @@ export const ProjectDashboard = function ({projects, setProjects}) {
 // ${showOption ? 'h-fit' : 'h-28'} `}
         } 
         </div>
-        <div className={`main-dashboard grid xl:grid-cols-4 overflow-hidden lg:grid-cols-3 md:grid-cols-2 sm-grid-cols-1 gap-5	`} style={{ height: `${showOption ? '300px' : '230px'}`, transition: 'height 0.5s ease-out'}} >
+        {/* FIXME: height transition not working properly, look for alternatives */}
+        <div className={`main-dashboard grid xl:grid-cols-4 overflow-hidden lg:grid-cols-3 md:grid-cols-2 sm-grid-cols-1 gap-5	`} style={{ height: `${showOption ? '500px' : '230px'}`, transition: 'height 0.5s ease-out'}} >
             { showingProjects && showingProjects.length ? 
               showingProjects.map((project, index) => {
                 return (

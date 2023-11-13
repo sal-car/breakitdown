@@ -9,25 +9,48 @@ import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import moment from 'moment';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { filterProjectsByDate } from '../../utils/filtering';
 
 
 
 
 export const TimelineBox = function (props) {
-    const [sortedList, setSortedList] = useState([])
+    const [timelineList, setTimelineList] = useState([])
+    const [showHourlySchedule, setShowHourlySchedule] = useState()
 
     const formatDate = function (date) {
-        console.log(date)
-        return moment(new Date(date.date)).format("DD MMM")
+        return showHourlySchedule ? 
+        moment(new Date(date.date)).format("HH:mm")
+        :
+        moment(new Date(date.date)).format("DD MMM");
     }
 
+    const setContent = function () {
+        if (projectIsATask()) {
+            const content = sortByDate(filterProjectsByDate('today', props.projects))
+            setShowHourlySchedule(true)
+            setTimelineList([...content])
+        } else {
+            const content = sortByDate(props.projects)
+            setShowHourlySchedule(false)
+            setTimelineList([...content])
+        }
+    }
+
+    const sortByDate = function (projects) {
+        return [...projects.sort((a,b) => new Date(a.date) - new Date(b.date))]
+    }
+
+    const projectIsATask = function () {
+        if (props.projects[0] != undefined) {
+            return 'parent' in props.projects[0] ? true : false;
+        }
+    }
+    
     useEffect(() => {
-        setSortedList(sortByDate())
+        setContent()
     }, [props.projects])
 
-    const sortByDate = function () {
-        return [...props.projects.sort((a,b) => new Date(a.date) - new Date(b.date))]
-    }
 
   return (
     <div className=" bg-white/50 rounded-3xl shadow-lg py-5 px-2  ml-5 w-350 ">
@@ -35,19 +58,16 @@ export const TimelineBox = function (props) {
     <div className=" rounded-lg p-5">
         <Timeline position="alternate">
         {
-        sortedList ?
-        sortedList.map((project, index) => (
+        timelineList ?
+        timelineList.map((project, index) => (
             <TimelineItem key={index}>
-                <TimelineOppositeContent color="text.secondary" sx={{textAlign: 'left'}}> 
+                <TimelineOppositeContent color="text.secondary" sx={{textAlign: 'right'}}> 
                 <p>{formatDate(project)}</p>
                 </TimelineOppositeContent>
                 <TimelineSeparator>
-                {/* <Typography variant="h6" component="span"> */}
                     <TimelineDot sx={{ width: 15, height: 15}} variant="outlined" />
-                {/* </Typography> */}
                     <TimelineConnector   sx={{height: 70}} />
                 </TimelineSeparator>
-                {/* <div className="border-2 rounded-lg h-10 "> */}
                 <TimelineContent sx={{textAlign: 'left'}}>
                     <p className=" text-gray-700 text-sm shadow-md  bg-[white]/70 font-semibold text-left tracking-wider p-2 rounded-lg w-full">
                     {project.project}

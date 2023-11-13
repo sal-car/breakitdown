@@ -12,10 +12,10 @@ import { TaskDashboard } from './components/dashboard/task-dashboard.js';
 
 function App() {
   const [projects, setProjects] = useState([]);
-  const [openCreateModal, setOpenCreateModal] = useState(true)
+  const [openCreateModal, setOpenCreateModal] = useState(false)
   const [openNavbar, setOpenNavbar] = useState(false)
   const [openProjectDashboard, setOpenProjectDashboard] = useState(true)
-  const [openTaskDashboard, setOpenTaskDashboard] = useState(true)
+  const [openTaskDashboard, setOpenTaskDashboard] = useState(false)
 
   const handleNavbarClick = function () {
     setOpenNavbar(!openNavbar)
@@ -25,19 +25,17 @@ function App() {
     setOpenCreateModal(!openCreateModal)
   }
   
-
-
-  
   useEffect(() => {
     const fetchOldProjects = async function () {
       try {
         const response = await getProjectsFromServer()
+        console.log(response)
+
         setProjects([...response])
       } catch (error) {
         console.log("Error when rendering projects: ", error)
       }
     }
-
     fetchOldProjects()
     }, [])
 
@@ -56,6 +54,8 @@ function App() {
         setOpenProjectDashboard={setOpenProjectDashboard}
         openTaskDashboard={openTaskDashboard} 
         setOpenTaskDashboard={setOpenTaskDashboard}
+        openNavbar={openNavbar}
+        style={{ height: `${openNavbar ? '300px' : '0px'}`, transition: 'height 1s ease-out'}}
         >
         </Navbar>
         :
@@ -82,8 +82,5 @@ function App() {
     </div>
   );
 }
-
-
-
 
 export default App;

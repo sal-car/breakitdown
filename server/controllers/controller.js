@@ -3,6 +3,7 @@ import {db} from '../models/index.js'
 
 export async function getDataFromAPI (req, res) {
     // TODO check if req.body has correct format
+    console.log(req.body)
   try {
     const data = await getDataFromOpenAI(req.body);
     res.status(200)
@@ -39,9 +40,8 @@ export async function getProjects (req, res) {
 }
 
 export async function deleteProject (req, res) {
-    console.log(req.body)
     try {
-        const response = await db.deleteOne({id: req.body.id})
+        const response = await 
         console.log('deleted: ', response);
         res.status(201);
         res.send(response);
@@ -50,5 +50,28 @@ export async function deleteProject (req, res) {
     }
 }
 
-// await db.collection('inventory').deleteOne({ status: 'D' });
+export async function setAsCompleted (req, res) {
+    const id = req.body.id
+    const newVal = req.body.completed
+    console.log(req.body)
+    try {
+        const response = await db.updateOne({
+            "tasks.id": id
+        }, 
+        {
+            "$set": {
+                "tasks.$[xxx].completed": newVal
+            }
+        },
+        {
+            arrayFilters: [ { "xxx.id": id } ]
+        },
+        )
+        console.log('updated: ', response);
+        res.status(201);
+        res.send(response);
+    } catch (error) {
+        console.log('Error when deleting project from db: ', error)
+    }
+}
 
