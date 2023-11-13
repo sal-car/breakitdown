@@ -8,7 +8,7 @@ import { Navbar } from './components/navigation/navbar.js';
 import { getProjectsFromServer } from './api-service.js';
 import { useEffect } from 'react';
 import { TaskDashboard } from './components/dashboard/task-dashboard.js';
-
+import {HeroSection} from './components/landing-page/hero-section.js'
 
 function App() {
   const [projects, setProjects] = useState([]);
@@ -16,6 +16,7 @@ function App() {
   const [openNavbar, setOpenNavbar] = useState(false)
   const [openProjectDashboard, setOpenProjectDashboard] = useState(true)
   const [openTaskDashboard, setOpenTaskDashboard] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(true)
 
   const handleNavbarClick = function () {
     setOpenNavbar(!openNavbar)
@@ -41,44 +42,52 @@ function App() {
 
 
   return (
-    <div className="App p-0 m-0 min-h-[100vh] ">
-        <Navigation className="h-100"
-        handleNavbarClick={handleNavbarClick} 
-        toggleCreateModal={toggleCreateModal}
-        >
-        </Navigation>
-      {openNavbar ?
-        <Navbar 
-        setOpenNavbar={setOpenNavbar}
-        openProjectDashboard={openProjectDashboard} 
-        setOpenProjectDashboard={setOpenProjectDashboard}
-        openTaskDashboard={openTaskDashboard} 
-        setOpenTaskDashboard={setOpenTaskDashboard}
-        openNavbar={openNavbar}
-        style={{ height: `${openNavbar ? '300px' : '0px'}`, transition: 'height 1s ease-out'}}
-        >
-        </Navbar>
-        :
-        <div></div>
-      }
-      {
-        openProjectDashboard ?
-        <ProjectDashboard projects={projects} setProjects={setProjects}/>
-        :
-        null
-      }
-     {
-        openTaskDashboard ?
-        <TaskDashboard setProjects={setProjects} projects={projects}></TaskDashboard>
-        :
-        null
-      }
-      {
-        openCreateModal ? 
-          <CreateProject projects={projects} setProjects={setProjects} toggleCreateModal={toggleCreateModal} className="CreateProject"></CreateProject>
+    <div className="App"> {
+      !isAuthenticated &&
+      <HeroSection></HeroSection>
+      
+      ||
+
+      <div className="App-0 m-0 min-h-[100vh] ">
+          <Navigation className="h-100"
+          handleNavbarClick={handleNavbarClick} 
+          toggleCreateModal={toggleCreateModal}
+          >
+          </Navigation>
+        {openNavbar ?
+          <Navbar 
+          setOpenNavbar={setOpenNavbar}
+          openProjectDashboard={openProjectDashboard} 
+          setOpenProjectDashboard={setOpenProjectDashboard}
+          openTaskDashboard={openTaskDashboard} 
+          setOpenTaskDashboard={setOpenTaskDashboard}
+          openNavbar={openNavbar}
+          style={{ height: `${openNavbar ? '300px' : '0px'}`, transition: 'height 1s ease-out'}}
+          >
+          </Navbar>
+          :
+          <div></div>
+        }
+        {
+          openProjectDashboard ?
+          <ProjectDashboard projects={projects} setProjects={setProjects}/>
           :
           null
-      } 
+        }
+      {
+          openTaskDashboard ?
+          <TaskDashboard setProjects={setProjects} projects={projects}></TaskDashboard>
+          :
+          null
+        }
+        {
+          openCreateModal ? 
+            <CreateProject projects={projects} setProjects={setProjects} toggleCreateModal={toggleCreateModal} className="CreateProject"></CreateProject>
+            :
+            null
+        } 
+      </div>
+  }
     </div>
   );
 }

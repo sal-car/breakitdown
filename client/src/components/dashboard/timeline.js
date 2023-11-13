@@ -54,9 +54,9 @@ export const TimelineBox = function (props) {
 
 
   return (
-    <div className=" bg-white/50 rounded-3xl shadow-lg py-5 px-2  ml-5 w-350 ">
+    <div className=" bg-white/60 rounded-3xl shadow-lg py-5 px-2 min-h-[260px] ml-5 w-350 ">
         <h1 className='text-2xl text-gray-800 font-semibold light:text-white mb-5 ml-3'>Timeline</h1>
-    <div className=" rounded-lg p-5">
+    <div className=" rounded-lg p-5 min-h-[315px]">
         <Timeline position="alternate">
         {
         timelineList ?
@@ -66,8 +66,8 @@ export const TimelineBox = function (props) {
                 <p  className="mt-3">{formatDate(project)}</p>
                 </TimelineOppositeContent>
                 <TimelineSeparator>
-                    <TimelineDot  color={`${project.completed ? 'success' : 'grey'}`} >
-                    {project.completed ? 
+                    <TimelineDot  color={`${project.completed === true ? 'success' : 'grey'}`} >
+                    {project.completed === true ? 
                     <StarBorderTwoToneIcon/>
                     : 
                     <AssignmentLateTwoToneIcon/>
@@ -81,12 +81,11 @@ export const TimelineBox = function (props) {
                     {project.project}
                     </p>
                 </TimelineContent>
-
-                {/* </div> */}
             </TimelineItem>
         ))
         : null
     }
+        {/* <p className="text-gray-700 text-sm shadow-md  bg-[white]/70 font-semibold text-left tracking-wider p-2 rounded-lg w-1/2 justify-center flex">Add another project!</p> */}
         </Timeline>
 
 

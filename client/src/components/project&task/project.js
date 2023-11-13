@@ -37,8 +37,9 @@ export const Project = function ({handleDeleteClick, project, projects, setProje
     const setProjectAsCompleted = function () {
         const progress = calculateProgress()
         if (progress === '100%') {
-            if (projects) setProjects(() => {
-                return projects.map((proj) => {
+            project.completed = true;
+            setProjects(() => {
+                return [...projects.map((proj) => {
                     if (proj.id === project.id) {
                         return {
                             ...project,
@@ -47,7 +48,7 @@ export const Project = function ({handleDeleteClick, project, projects, setProje
                     } else {
                         return proj;
                     }
-                })
+                })]
             });
         toggleCompleted(project)
         }

@@ -6,7 +6,7 @@ export const Navigation = function ({handleNavbarClick, toggleCreateModal}) {
 
 
     return (
-        <div className="Navigation h-20">
+        <div className="Navigation h-20 mb-10 pt-2">
             <header className="header flex justify-between items-center pt-5">
                 <div className="left-header flex">
                     <button onClick={handleNavbarClick} className="nav-icon flex gap-2 flex-col ml-8 ">
@@ -20,7 +20,7 @@ export const Navigation = function ({handleNavbarClick, toggleCreateModal}) {
                     <input type="text" placeholder="Search" className="search-bar w-[750px] rounded-lg h-8 p-2" />
                 </div>
                 {/* <div className="right-header  "> */}
-                    <button className="bg-transparent hover:bg-violet-900 text-violet-900 font-semibold hover:text-white py-2 px-4 border border-violet-900 hover:border-transparent rounded  mx-5 mr-10" onClick={toggleCreateModal}>New project</button>
+                    <button className="bg-transparent hover:bg-[#8A4F7D]  text-[#8A4F7D] font-semibold hover:text-white py-3 px-5 border border-[#8A4F7D]  hover:border-transparent rounded-md  mx-5 mr-14" onClick={toggleCreateModal}>New project</button>
                 {/* </div> */}
             </header>
         </div>
