@@ -1,6 +1,7 @@
+import React from "react";
 import { useEffect } from "react";
 
-export const Project = function ({project, onProjectClick, handleDeleteClick}) {
+export const Project = function ({project}) {
 
     const convertToTitleCase = function (str) {
         if (!str) {

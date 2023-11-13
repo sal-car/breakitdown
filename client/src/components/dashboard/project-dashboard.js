@@ -1,3 +1,4 @@
+import React  from 'react';
 import { useState } from 'react'
 import {Project} from '../project&task/project'
 import { useEffect } from 'react'
@@ -36,15 +37,15 @@ export const ProjectDashboard = function ({projects, setProjects}) {
     return (
       <div className="main grid grid-cols-12 w-full h-full">
 
-      <div className="Dashboard bg-white/60 rounded-3xl shadow-lg p-5 col-span-9 ml-5 h-fit">
+      <div className="Dashboard bg-white/60 rounded-3xl shadow-lg p-5 col-span-8 ml-5 h-fit">
         <div className="info"> 
           <div className="dashboard-header flex justify-between gap-10 mb-5">
               <h1 className='text-2xl font-semibold text-gray-800'>Projects</h1>
               <FilterByDate setShowingProjects={setShowingProjects} projects={projects} ></FilterByDate>
           </div>
-        <button onClick={ () => setShowOption(!showOption)}  className='mb-2 text-m font-semibold text-gray-900'>
+        <button onClick={ () => setShowOption(!showOption)}  className='mb-3 text-m font-semibold text-gray-900'>
         {showOption ? 
-        '☝️ Show less'
+        '👇 Show less'
         : 
         '👉 Show more'
       }
@@ -57,7 +58,7 @@ export const ProjectDashboard = function ({projects, setProjects}) {
 // ${showOption ? 'h-fit' : 'h-28'} `}
         } 
         </div>
-        <div className={`main-dashboard grid xl:grid-cols-4 overflow-hidden lg:grid-cols-3 md:grid-cols-2 sm-grid-cols-1 gap-5	`} style={{ height: 'fit-content', height: `${showOption ? '300px' : '230px'}`, transition: 'height 0.5s ease-out'}} >
+        <div className={`main-dashboard grid xl:grid-cols-4 overflow-hidden lg:grid-cols-3 md:grid-cols-2 sm-grid-cols-1 gap-5	`} style={{ height: `${showOption ? '300px' : '230px'}`, transition: 'height 0.5s ease-out'}} >
             { showingProjects && showingProjects.length ? 
               showingProjects.map((project, index) => {
                 return (
@@ -71,7 +72,7 @@ export const ProjectDashboard = function ({projects, setProjects}) {
             }
         </div>
       </div >
-      <div className="col-span-3 mr-5">
+      <div className="col-span-4 mr-5">
         <TimelineBox  projects={projects}></TimelineBox>
       </div>
     </div>

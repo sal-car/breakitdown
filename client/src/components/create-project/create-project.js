@@ -1,10 +1,10 @@
 import { useState } from "react";
+import React  from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './styles.css'
 import getBreakdown, { sendToServer } from '../../api-service.js'
 import {v4 as uuidv4} from 'uuid'
-import moment from 'moment'
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 
 
@@ -46,10 +46,10 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
     }
     
     // Saving project
-    const saveProject = async function (e) {
+    const saveProject = function (e) {
         e.preventDefault()
         setProjects([...projects, {project: projectData.project, date: projectData.date, id: projectData.id, tasks: [...steps]}])
-        const result = await sendToServer({...projectData, tasks: [...steps]})
+        sendToServer({...projectData, tasks: [...steps]})
         toggleCreateModal()
     }
 
@@ -89,24 +89,24 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
                 <div className="header flex justify-between mb-12">
                     <h1 className="create-project-header text-2xl font-semibold">Create project</h1>
                     <button onClick={toggleCreateModal} className="close-modal">
-                        <HighlightOffRoundedIcon color="inherit" fontSize="large" className="absolute  top-[-5px] right-[-5px]"></HighlightOffRoundedIcon>
+                        <HighlightOffRoundedIcon color="inherit" fontSize="large" className="absolute  top-[-4px] right-[-4px]"></HighlightOffRoundedIcon>
                     </button>
                 </div>
                 <form onSubmit={saveProject} className="create-project-form">
                     <div className="input-area">
                         <div className="name-date flex gap-5 mr-3">
                             <div className="name flex flex-col gap-1 mb-8">
-                                <label for="project-name" className="font-semibold tracking-wide">Project</label>
+                                <label htmlFor="project-name" className="font-semibold tracking-wide">Project</label>
                                 <input required type="text" className="project-name outline-none border p-2.5 rounded-lg w-[400px]" onChange={handleInputChange} name="project-name" value={projectData.project} placeholder="What's the goal?"/>
                             </div>
                             <div className="date-picker flex flex-col mb-12">
-                                <label for="date" className="font-semibold tracking-wide mb-1">Deadline</label>
+                                <label htmlFor="date" className="font-semibold tracking-wide mb-1">Deadline</label>
                                 <DatePicker className="project-date outline-none border p-4 h-12 rounded-lg"closeOnScroll={true} showTimeSelect dateFormat="Pp"  selected={new Date(projectData.date)} onChange={(date) => setprojectData({...projectData, date: new Date(date)})} />
                             </div>
 
                         </div>
                         <div className="description flex flex-col gap-1 mb-10">
-                            <label for="project-description" className=" font-semibold tracking-wide ">Description</label>
+                            <label htmlFor="project-description" className=" font-semibold tracking-wide ">Description</label>
                             <textarea placeholder="Would you like to expand on that?" className="project-description h-28 outline-none border p-2.5 rounded-xl" onChange={handleInputChange} name="project-description" value={projectData.description}/>
                         </div>
                     </div> 
@@ -119,7 +119,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
                                 // <div className="step w-full" key={index}>
                                     <form key={index} className="create-project-form"> 
                                         <div className="name-date flex gap-5 items-center ">
-                                            <button onClick={() => deleteStep(step.id)} class="delte-step-btn flex items-start">
+                                            <button onClick={() => deleteStep(step.id)} className="delte-step-btn flex items-start">
                                                 <HighlightOffRoundedIcon color="secondary" className="self-start"></HighlightOffRoundedIcon>
                                             </button>
                                             <textarea required type="text" className="step-name w-[400px] border break-words outline-none rounded-lg p-2" onChange={handleInputChange} value={step.project} name={step.id} placeholder={`Step ${index+1}`}/>

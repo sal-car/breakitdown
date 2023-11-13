@@ -1,3 +1,7 @@
+import React from "react"
+
+// IN PROGRESS
+
 export const ProjectInfo = function ({project}) {
     console.log("projetModal")
     console.log(project)
@@ -13,11 +17,11 @@ export const ProjectInfo = function ({project}) {
                 :
                 <div></div>
             }
-            {
+            {/* {
                 project.tasks.map((task) => {
                     <div className="project-info-task"></div>
                 })
-            }
+            } */}
         </div>
     )
 

@@ -1,10 +1,10 @@
+import React from 'react';
 import Checkbox from '@mui/material/Checkbox';
-import CheckCircleOutlineSharpIcon from '@mui/icons-material/CheckCircleOutlineSharp';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import {toggleCompleted} from '../../api-service'
 
 
-export const Task = function ({projects, task, setTasks, tasks, setProjects}) {
+export const Task = function ({projects, task, setProjects}) {
 
     const parseTime = function () {
         const date = new Date(task.date)
@@ -43,10 +43,10 @@ export const Task = function ({projects, task, setTasks, tasks, setProjects}) {
         saveCompletedStatus(task)
     }
 
-    const saveCompletedStatus = async function () {
+    const saveCompletedStatus = function () {
         try {
             console.log(task.id)
-            const result = await toggleCompleted(task);
+            toggleCompleted(task);
         } catch (error) {
             console.log(error)
         }

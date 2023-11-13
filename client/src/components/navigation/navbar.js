@@ -1,4 +1,6 @@
-export const Navbar = function ({setOpenNavbar, openProjectDashboard, setOpenProjectDashboard, openTaskDashboard, setOpenTaskDashboard}) {
+import React  from 'react';
+
+export const Navbar = function ({setOpenNavbar, setOpenProjectDashboard, setOpenTaskDashboard}) {
 
     const goToTaskDashboard = function () {
         setOpenProjectDashboard(false)

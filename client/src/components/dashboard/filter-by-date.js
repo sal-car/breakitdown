@@ -1,3 +1,5 @@
+import React  from 'react';
+
 export const FilterByDate = function ({setShowingProjects, projects}) {
 
     const filterProjects = function (e) {
@@ -9,7 +11,8 @@ export const FilterByDate = function ({setShowingProjects, projects}) {
             setShowingProjects([...projects])
             break;
     
-          case "today":
+          case "today": {
+
             const todaysProjects = projects.filter((project) => {
               return new Date(project.date).getDate() == today.getDate() &&
               new Date(project.date).getMonth() == today.getMonth() &&
@@ -17,11 +20,11 @@ export const FilterByDate = function ({setShowingProjects, projects}) {
             })
     
             setShowingProjects([...todaysProjects])
-            break;
-    
-          case "this-week":
-    
-          // GETTING THIS WEEK'S DATES        
+          }
+          break;
+          
+          case "this-week": {
+            // GETTING THIS WEEK'S DATES        
             let week = [today];
             let counter = 1;
             
@@ -41,21 +44,23 @@ export const FilterByDate = function ({setShowingProjects, projects}) {
                   projectDate.getYear() === date.getYear() &&
                   projectDate.getMonth() === date.getMonth() &&
                   projectDate.getDate() === date.getDate()
-                );
-              });
+                  );
+                });
+              }
+              )
+              
+              setShowingProjects([...thisWeeksProjects])        
             }
-            )
-    
-            setShowingProjects([...thisWeeksProjects])        
-            break;
-    
-          case "this-month":
-            const thisMonthsProjects = projects.filter((project) => {
-              return new Date(project.date).getMonth() == today.getMonth() &&
-              new Date(project.date).getYear() == today.getYear()
-            })
-    
-            setShowingProjects([...thisMonthsProjects]);
+              break;
+              
+              case "this-month": {
+                const thisMonthsProjects = projects.filter((project) => {
+                  return new Date(project.date).getMonth() == today.getMonth() &&
+                  new Date(project.date).getYear() == today.getYear()
+                })
+                
+                setShowingProjects([...thisMonthsProjects]);
+              }
             break;
         
           default:

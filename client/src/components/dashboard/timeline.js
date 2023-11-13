@@ -1,3 +1,4 @@
+import React  from 'react';
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
@@ -47,8 +48,10 @@ export const TimelineBox = function (props) {
                     <TimelineConnector   sx={{height: 70}} />
                 </TimelineSeparator>
                 {/* <div className="border-2 rounded-lg h-10 "> */}
-                <TimelineContent sx={{textAlign: 'left'}}><p className=" text-gray-800 shadow-md  bg-[white]/70 font-semibold text-left tracking-wider p-2 px-4 rounded-lg w-full">
-                    {project.project}</p>
+                <TimelineContent sx={{textAlign: 'left'}}>
+                    <p className=" text-gray-700 text-sm shadow-md  bg-[white]/70 font-semibold text-left tracking-wider p-2 rounded-lg w-full">
+                    {project.project}
+                    </p>
                 </TimelineContent>
 
                 {/* </div> */}
