@@ -57,7 +57,7 @@ export const Project = function ({handleDeleteClick, project, projects, setProje
         <div  className="bg-white/80 shadow-md  rounded-lg w-70 pb-5 h-fit min-h-[250px]">
             <div className="flex justify-between px-4 mb-3 py-0 pt-3">
                 <h2 className="tracking-tight text-xl pt-3 font-medium leading-tight text-gray-800" >{convertToTitleCase(project.project)}</h2>
-                {/* <button className="align-top" onClick={(handleDeleteClick)}>X</button> */}
+                <button className="align-top" onClick={(handleDeleteClick)}>X</button>
             </div>
             {/* <div class="border-b-2 border-[#0000002d] pt-0 px-0 text-black w-full"></div> */}
             <div className="project-info px-5 flex flex-col">
