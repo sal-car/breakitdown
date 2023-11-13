@@ -13,8 +13,10 @@ export const Task = function ({projects, task, setTasks, tasks, setProjects}) {
         return `${hours}:${mins}`
     }
 
-    const getParentProject = function (id) {
+    const getParentProject = function () {
+        console.log(task)
         const project = projects.find((project) => project.id === task.parent);
+        console.log(project)
         return project;
     }
 
@@ -36,7 +38,7 @@ export const Task = function ({projects, task, setTasks, tasks, setProjects}) {
                 return project;
             }
             })
-        setProjects(updatedProjects);
+        setProjects([...updatedProjects]);
 
         saveCompletedStatus(task)
     }

@@ -85,7 +85,7 @@ function App() {
     const fetchOldProjects = async function () {
       try {
         const response = await getProjectsFromServer()
-        setProjects(response)
+        setProjects([...response])
       } catch (error) {
         console.log("Error when rendering projects: ", error)
       }
@@ -96,11 +96,12 @@ function App() {
 
 
   return (
-    <div className="App p-20">
-      {/* <Navigation 
-      handleNavbarClick={handleNavbarClick} 
-      toggleCreateModal={toggleCreateModal}
-      ></Navigation>
+    <div className="App p-0 m-0 ">
+        <Navigation className="h-100"
+        handleNavbarClick={handleNavbarClick} 
+        toggleCreateModal={toggleCreateModal}
+        >
+        </Navigation>
       {openNavbar ?
         <Navbar 
         setOpenNavbar={setOpenNavbar}
@@ -112,24 +113,24 @@ function App() {
         </Navbar>
         :
         <div></div>
-      } */}
+      }
       {
         openProjectDashboard ?
         <ProjectDashboard projects={projects} setProjects={setProjects}/>
         :
-        <div></div>
+        null
       }
      {
         openTaskDashboard ?
         <TaskDashboard setProjects={setProjects} projects={projects}></TaskDashboard>
         :
-        <div></div>
+        null
       }
       {
         openCreateModal ? 
           <CreateProject projects={projects} setProjects={setProjects} toggleCreateModal={toggleCreateModal} className="CreateProject"></CreateProject>
           :
-          <div></div>
+          null
       } 
     </div>
   );

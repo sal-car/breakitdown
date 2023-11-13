@@ -5,10 +5,12 @@ import { ProjectInfo } from '../project&task/project-info'
 import { deleteProject } from '../../api-service'
 import { TimelineBox } from './timeline'
 
+
 export const ProjectDashboard = function ({projects, setProjects}) {
   const [projectModal, toggleProjectModal] = useState(false)
   const [clickedProject, setClickedProject] = useState({})
   const [showingProjects, setShowingProjects] = useState(projects)
+  const [showOption, setShowOption] = useState(false)
   
   useEffect(() => {
     setShowingProjects(projects)
@@ -92,12 +94,12 @@ export const ProjectDashboard = function ({projects, setProjects}) {
   }
     
     return (
-      <div className="main grid grid-cols-10 w-full">
+      <div className="main grid grid-cols-12 w-full">
 
-      <div className="Dashboard bg-white/30 rounded-xl h-full p-5 col-span-7">
+      <div className="Dashboard bg-white/60 rounded-3xl shadow-lg p-5 col-span-9 ml-5 h-fit">
         <div className="info"> 
           <div className="dashboard-header flex justify-between gap-10 mb-5">
-              <h1 className='text-2xl font-bold light:text-white'>Projects</h1>
+              <h1 className='text-2xl font-semibold text-gray-800'>Projects</h1>
                 <form action="">
                   <select className='bg-white/0 font-semibold text-gray-900 text-m rounded-lg outline-none  w-full p-3' onChange={filterProjects} name="filter">
                     <option  value="all">All</option>
@@ -112,10 +114,10 @@ export const ProjectDashboard = function ({projects, setProjects}) {
           <ProjectInfo project={clickedProject} toggleProjectModal={toggleProjectModal}></ProjectInfo>
           :
           null
-
+// ${showOption ? 'h-fit' : 'h-28'} `}
         } 
         </div>
-        <div className="main-dashboard grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm-grid-cols-1 gap-2 ">
+        <div className={`main-dashboard grid xl:grid-cols-4 overflow-hidden lg:grid-cols-3 md:grid-cols-2 sm-grid-cols-1 gap-5	`} style={{ height: 'fit-content', height: `${showOption ? '300px' : '150px'}`, transition: 'height 0.5s ease-out'}} >
             { showingProjects && showingProjects.length ? 
               showingProjects.map((project, index) => {
                 return (
@@ -128,6 +130,13 @@ export const ProjectDashboard = function ({projects, setProjects}) {
               </div>
             }
         </div>
+        <button onClick={ () => setShowOption(!showOption)}  className='mt-2 font-semibold text-gray-900'>
+          {showOption ? 
+          '☝️ Show less'
+          : 
+          '👉 Show more'
+        }
+        </button>
       </div >
       <div className="col-span-3">
         <TimelineBox  projects={projects}></TimelineBox>
