@@ -53,18 +53,23 @@ export const Task = function ({projects, task, setTasks, tasks, setProjects}) {
     }
 
     return (
-        <div className="Task">
-            <div className="task-left">
-                {
-                    task.completed === true ? 
-                    <Checkbox defaultChecked onChange={() => handleCheckChange(task.id)} checkedIcon={<CheckCircleIcon/>} color="success"/>
-                    :
-                    <Checkbox onChange={() => handleCheckChange(task.id)} checkedIcon={<CheckCircleIcon/>} color="success"/>
-                }
-            <h3>{task.project}</h3>
-            <p>{getParentProject(task.parent).project}</p>
+        <div className="Task border rounded-lg px-1">
+            <div className="top  flex items-center justify-between">
+                <div className="left flex items-center">
+                    {
+                        task.completed === true ? 
+                        <Checkbox defaultChecked onChange={() => handleCheckChange(task.id)} checkedIcon={<CheckCircleIcon/>} color="success"/>
+                        :
+                        <Checkbox onChange={() => handleCheckChange(task.id)} checkedIcon={<CheckCircleIcon/>} color="success"/>
+                    }
+                    <h3 className="text-gray-800 font-semibold ml-2">{task.project}</h3>
+
+                </div>
+                <p className="mr-5 font-semibold text-gray-500 ">{parseTime(task.date)}</p>
             </div>
-            <p>{parseTime(task.date)}</p>
+            <div className="bottom ml-14 mb-1">
+                <p className="text-sm text-gray-500">{getParentProject(task.parent).project}</p>
+            </div>
         </div>
     )
 }

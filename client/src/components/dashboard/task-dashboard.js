@@ -26,21 +26,23 @@ export const TaskDashboard = function ({setProjects, projects}) {
 
 
     return (
-        <div className="TaskDashboard Dashboard">
+        <div className="TaskDashboard  bg-white/60 rounded-3xl shadow-lg p-5 col-span-9 ml-5 h-fit w-2/3">
             <div className="info">
-            <h1 className="dashboard-header">Tasks</h1>
-            <form>
-                <label for="project-select">Filter by project</label>
-                <select name="project-select" onChange={filterByProject}>
-                    <option value="all">All projects</option>
-                    { projects.map((project, index) => {
-                           return <option key={index} value={project.id}>{project.project}</option> 
-                    })
-                    }
-                </select>
-            </form>
+                <div className="header flex justify-between gap-10 mb-5">
+                    <h1 className="text-2xl font-semibold text-gray-800">Tasks</h1>
+                    <form>
+                        {/* <label for="project-select" className="font-semibold tracking-wide">Filter by project</label> */}
+                        <select name="project-select" className="bg-white/0 font-semibold text-gray-900 rounded-lg outline-none  w-full " onChange={filterByProject}>
+                            <option value="all">All projects</option>
+                            { projects.map((project, index) => {
+                                return <option key={index} value={project.id}>{project.project}</option> 
+                            })
+                            }
+                        </select>
+                    </form>
+                </div>
             </div>
-            <div className="list-dashboard">
+            <div className="list-dashboard flex flex-col gap-5">
             { tasks.length ? 
                 tasks.map((task, index) =>{
                     return (
@@ -48,9 +50,13 @@ export const TaskDashboard = function ({setProjects, projects}) {
                     )
                 })
                 :
-                <div></div>
+                <div className="flex justify-center">
+                    <p>Woops, no tasks here!</p>
+                </div>
             }
             </div>
         </div>
     )
 }
+
+// flex flex-col gap-5 mt-10
