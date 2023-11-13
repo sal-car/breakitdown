@@ -94,7 +94,7 @@ export const ProjectDashboard = function ({projects, setProjects}) {
   }
     
     return (
-      <div className="main grid grid-cols-12 w-full">
+      <div className="main grid grid-cols-12 w-full min-h-full">
 
       <div className="Dashboard bg-white/60 rounded-3xl shadow-lg p-5 col-span-9 ml-5 h-fit">
         <div className="info"> 

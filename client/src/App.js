@@ -96,7 +96,7 @@ function App() {
 
 
   return (
-    <div className="App p-0 m-0 ">
+    <div className="App p-0 m-0 min-h-[100vh] ">
         <Navigation className="h-100"
         handleNavbarClick={handleNavbarClick} 
         toggleCreateModal={toggleCreateModal}

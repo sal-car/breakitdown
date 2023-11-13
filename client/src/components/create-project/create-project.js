@@ -84,11 +84,13 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
 
     return ( 
     <div className='CreateProject overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full  bg-gray-600/50'>	
-        <div className="relative p-4 max-w-3xl min-w-2xl max-h-full top-24 w-1/2 mx-auto">
-            <div className="relative bg-white rounded-xl shadow p-8 flex flex-col">
+        <div className="relative p-4 min-w-fit max-w-fit max-h-full top-24 mx-auto">
+            <div className="relative bg-white rounded-xl shadow px-10 py-8 flex flex-col">
                 <div className="header flex justify-between mb-12">
                     <h1 className="create-project-header text-2xl font-semibold">Create project</h1>
-                    <button onClick={toggleCreateModal} className="close-modal">X</button>
+                    <button onClick={toggleCreateModal} className="close-modal">
+                        <HighlightOffRoundedIcon color="inherit" fontSize="large" className="absolute  top-[-5px] right-[-5px]"></HighlightOffRoundedIcon>
+                    </button>
                 </div>
                 <form onSubmit={saveProject} className="create-project-form">
                     <div className="input-area">
@@ -117,10 +119,10 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
                                 // <div className="step w-full" key={index}>
                                     <form key={index} className="create-project-form"> 
                                         <div className="name-date flex gap-5 items-center ">
-                                            <button onClick={() => deleteStep(step.id)} class="delte-step-btn">
-                                                <HighlightOffRoundedIcon color="secondary"></HighlightOffRoundedIcon>
+                                            <button onClick={() => deleteStep(step.id)} class="delte-step-btn flex items-start">
+                                                <HighlightOffRoundedIcon color="secondary" className="self-start"></HighlightOffRoundedIcon>
                                             </button>
-                                            <textarea required type="text" className="step-name w-[400px] border break-words  rounded-lg p-2" onChange={handleInputChange} value={step.project} name={step.id} placeholder={`Step ${index+1}`}/>
+                                            <textarea required type="text" className="step-name w-[400px] border break-words outline-none rounded-lg p-2" onChange={handleInputChange} value={step.project} name={step.id} placeholder={`Step ${index+1}`}/>
                                             <DatePicker showTimeSelect onChange={(e) => handleDateChange(e, step.id)} className="step-date outline-none border p-4 h-12 rounded-lg" closeOnScroll={true} dateFormat="Pp" selected={new Date(step.date)} />
                                         </div>
                                     </form>
