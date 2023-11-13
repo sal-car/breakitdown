@@ -20,7 +20,7 @@ export const Navigation = function ({handleNavbarClick, toggleCreateModal}) {
                     <input type="text" placeholder="Search" className="search-bar w-[750px] rounded-lg h-8 p-2" />
                 </div>
                 {/* <div className="right-header  "> */}
-                    <button className="bg-transparent hover:bg-[#8A4F7D]  text-[#8A4F7D] font-semibold hover:text-white py-3 px-5 border border-[#8A4F7D]  hover:border-transparent rounded-md  mx-5 mr-14" onClick={toggleCreateModal}>New project</button>
+                    <button className="bg-transparent hover:bg-[#F9D74D]  text-[#F9D74D] font-semibold hover:text-white py-3 px-5 border border-[#F9D74D]  hover:border-transparent rounded-md  mx-5 mr-14" onClick={toggleCreateModal}>New project</button>
                 {/* </div> */}
             </header>
         </div>

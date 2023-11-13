@@ -83,7 +83,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
 
 
     return ( 
-    <div className='CreateProject overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full  bg-gray-600/50'>	
+    <div className='CreateProject overflow-y-auto overflow-x-hidden min-h-[100vh] fixed top-0 right-0 left-0 z-50 justify-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full  bg-gray-600/50'>	
         <div className="relative p-4 min-w-fit max-w-fit max-h-full top-24 mx-auto">
             <div className="relative bg-white rounded-xl shadow px-10 py-8 flex flex-col">
                 <div className="header flex justify-between mb-12">
