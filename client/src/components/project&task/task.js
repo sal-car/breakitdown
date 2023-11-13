@@ -4,7 +4,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import {toggleCompleted} from '../../api-service'
 
 // projects={projects} task={task} setTasks={setTasks} tasks={tasks} setProjects={setProjects}
-export const Task = function ({projects, task, setTasks, setProjects}) {
+export const Task = function ({projects, task, setProjects}) {
 
     const parseTime = function () {
         const date = new Date(task.date)

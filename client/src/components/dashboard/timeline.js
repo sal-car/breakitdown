@@ -10,7 +10,8 @@ import moment from 'moment';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { filterProjectsByDate } from '../../utils/filtering';
-
+import StarBorderTwoToneIcon from '@mui/icons-material/StarBorderTwoTone';
+import AssignmentLateTwoToneIcon from '@mui/icons-material/AssignmentLateTwoTone';
 
 
 
@@ -65,7 +66,14 @@ export const TimelineBox = function (props) {
                 <p>{formatDate(project)}</p>
                 </TimelineOppositeContent>
                 <TimelineSeparator>
-                    <TimelineDot sx={{ width: 15, height: 15}} variant="outlined" />
+                    <TimelineDot  color={`${project.completed ? 'success' : 'grey'}`} >
+                    {project.completed ? 
+                    <StarBorderTwoToneIcon/>
+                    : 
+                    <AssignmentLateTwoToneIcon/>
+
+                    }
+                    </TimelineDot>
                     <TimelineConnector   sx={{height: 70}} />
                 </TimelineSeparator>
                 <TimelineContent sx={{textAlign: 'left'}}>

@@ -27,12 +27,6 @@ export const Navbar = function ({setOpenNavbar, setOpenProjectDashboard, setOpen
 
                 </li>
                     {/* <h2 className="nav-header" >Create</h2> */}
-                <li className="nav-list-item p-5 hover:bg-white/50 rounded-lg grow justify-center flex">
-                <button className="nav-option font-semibold">Project</button>
-                </li>
-                <li className="nav-list-item p-5 hover:bg-white/50 rounded-lg grow justify-center flex">
-                <button className="nav-option font-semibold">Task</button>
-                </li>
                     {/* <h2 className="nav-header" >Home</h2> */}
                 <li className="nav-list-item p-5 hover:bg-white/50 rounded-lg grow justify-center flex">
                 <button className="nav-option font-semibold">Profile</button>

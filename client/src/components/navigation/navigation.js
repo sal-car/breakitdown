@@ -1,4 +1,5 @@
 import React  from 'react';
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 
 
 export const Navigation = function ({handleNavbarClick, toggleCreateModal}) {
@@ -8,10 +9,8 @@ export const Navigation = function ({handleNavbarClick, toggleCreateModal}) {
         <div className="Navigation h-20">
             <header className="header flex justify-between items-center pt-5">
                 <div className="left-header flex">
-                    <button onClick={handleNavbarClick} className="nav-icon flex gap-2 flex-col mx-5 ">
-                        <div className="nav-line w-10 bg-white h-1  "></div>
-                        <div className="nav-line w-10 bg-white h-1 "></div>
-                        <div className="nav-line w-10 bg-white h-1 "></div>
+                    <button onClick={handleNavbarClick} className="nav-icon flex gap-2 flex-col ml-8 ">
+                        <MenuRoundedIcon style={{ color: "grey", fontSize: "40px" }}></MenuRoundedIcon>
                     </button>
                     <h2 className="logo text-xl font-sans font-semibold text-black/40 mr-2">
                         {/* breakitdown */}
