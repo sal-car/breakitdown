@@ -4,6 +4,18 @@ import React  from 'react';
 import { TimelineBox } from "./timeline";
 import { FilterByDate } from "./filter-by-date";
 
+/* 
+
+        const fetchOldProjects = async function () {
+            try {
+            const response = await getProjects();
+            console.log('RES', response)
+            setProjects([...response]);
+            } catch (error) {
+            console.log("Error when rendering projects: ", error);
+            }
+        }
+*/
 export const TaskDashboard = function ({setProjects, projects}) {
     const [tasks, setTasks] = useState([])
     const taskList = projects.filter((project) => project.tasks?.length).map((project) => project.tasks).flat() // FIXME: make DRY
@@ -11,6 +23,8 @@ export const TaskDashboard = function ({setProjects, projects}) {
     
     useEffect(() => {
         setTasks([...taskList])
+
+
     }, [projects])
 
 
@@ -56,8 +70,8 @@ export const TaskDashboard = function ({setProjects, projects}) {
                     })
                     :
                     <div className="flex justify-center">
-                        <p>Woops, no tasks here!</p>
-                    </div>
+                    <p className="font-semibold text-lg">No tasks ☹️</p>
+                  </div>
                 }
                 </div>
 

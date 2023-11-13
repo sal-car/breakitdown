@@ -16,6 +16,7 @@ export const ProjectDashboard = function ({projects, setProjects}) {
   
   useEffect(() => {
     setShowingProjects(projects)
+
   }, [projects])
 
 
@@ -67,8 +68,8 @@ export const ProjectDashboard = function ({projects, setProjects}) {
                 )
               })
               :
-              <div className="flex justify-center w-full">
-                <p>Woops, no projects here</p>
+              <div className=" mt-10 ml-2 col-start-2 col-span-2 flex justify-center">
+                <p className="font-semibold text-lg">No projects ☹️</p>
               </div>
             }
         </div>
