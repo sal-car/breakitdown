@@ -28,7 +28,8 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
         }
 
 
-    const deleteStep = function (id) {
+    const deleteStep = function (e, id) {
+        e.preventDefault()
         setSteps(steps.filter((step) => step.id != id))
     }
 
@@ -96,7 +97,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
                         <CloseIcon style={{color: "#b5b1b1"}} className="absolute top-[15px] right-[15px]"></CloseIcon>
                     </button>
                 </div>
-                <form onSubmit={saveProject} className="create-project-form">
+                <form className="create-project-form">
                     <div className="input-area">
                         <div className="name-date flex gap-5 mr-3">
                             <div className="name flex flex-col gap-1 mb-8">
@@ -134,7 +135,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
                                 // <div className="step w-full" key={index}>
                                     <form key={index} className="create-project-form"> 
                                         <div className="name-date flex gap-5 items-center ">
-                                            <button onClick={() => deleteStep(step.id)} className="delte-step-btn flex items-start">
+                                            <button onClick={(e) => deleteStep(e, step.id)} className="delte-step-btn flex items-start">
                                                 <HighlightOffRoundedIcon style={{color: "#bd0606"}} className="self-start"></HighlightOffRoundedIcon>
                                             </button>
                                             <textarea required type="text" className="step-name w-[400px] border break-words outline-none rounded-lg p-2" onChange={handleInputChange} value={step.project} name={step.id} placeholder={`Step ${index+1}`}/>
