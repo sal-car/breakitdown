@@ -6,25 +6,17 @@ import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
-import moment from 'moment';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { filterProjectsBy } from '../../utils/filtering';
 import StarBorderTwoToneIcon from '@mui/icons-material/StarBorderTwoTone';
 import AssignmentLateTwoToneIcon from '@mui/icons-material/AssignmentLateTwoTone';
-
+import {formatDate} from '../../utils/dateformatting'
 
 
 export const TimelineBox = function (props) {
     const [timelineList, setTimelineList] = useState([])
     const [showHourlySchedule, setShowHourlySchedule] = useState()
-
-    const formatDate = function (date) {
-        return showHourlySchedule ? 
-        moment(new Date(date.date)).format("HH:mm")
-        :
-        moment(new Date(date.date)).format("DD MMM");
-    }
 
     const setContent = function () {
         if (projectIsATask()) {
@@ -69,7 +61,7 @@ export const TimelineBox = function (props) {
         timelineList.map((project, index) => (
             <TimelineItem key={index}>
                 <TimelineOppositeContent color="text.secondary" sx={{textAlign: 'right'}} > 
-                <p  className="mt-3">{formatDate(project)}</p>
+                <p  className="mt-3">{formatDate(project, true)}</p>
                 </TimelineOppositeContent>
                 <TimelineSeparator>
                     <TimelineDot sx={{  "box-shadow": "0px 8px 15px rgba(0, 0, 0, 0.1)", "background-color": `${project.completed === true ? '#22C55E' : 'tarnsparent'}` }} >
@@ -80,7 +72,7 @@ export const TimelineBox = function (props) {
 
                     }
                     </TimelineDot>
-                    <TimelineConnector   sx={{height: 70}} />
+                    <TimelineConnector sx={{height: 70}} />
                 </TimelineSeparator>
                 <TimelineContent sx={{textAlign: 'left'}}>
                     <p className=" text-gray-700 text-md shadow-md  bg-[white] font-semibold text-left tracking-wider p-3 rounded-lg w-full">
