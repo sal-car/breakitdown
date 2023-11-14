@@ -54,12 +54,12 @@ export const TimelineBox = function (props) {
 
 
   return (
-    <div className=" bg-white/60 rounded-3xl shadow-lg py-5 px-2 min-h-[260px] ml-5 w-350 ">
+    <div className="  rounded-3xlpy-5 px-2 min-h-[260px] ml-0 mr-8 w-400 ">
         <h1 className='text-2xl text-gray-800 font-semibold light:text-white mb-5 ml-3'>
             {showHourlySchedule ?
-                "Today"
+                ""
                 :
-                "Timeline"
+                ""
             }
             </h1>
     <div className=" rounded-lg p-5 min-h-[315px]">
@@ -72,7 +72,7 @@ export const TimelineBox = function (props) {
                 <p  className="mt-3">{formatDate(project)}</p>
                 </TimelineOppositeContent>
                 <TimelineSeparator>
-                    <TimelineDot  color={`${project.completed === true ? 'success' : 'grey'}`} >
+                    <TimelineDot sx={{  "box-shadow": "0px 8px 15px rgba(0, 0, 0, 0.1)", "background-color": `${project.completed === true ? '#22C55E' : 'tarnsparent'}` }} >
                     {project.completed === true ? 
                     <StarBorderTwoToneIcon/>
                     : 
@@ -83,7 +83,7 @@ export const TimelineBox = function (props) {
                     <TimelineConnector   sx={{height: 70}} />
                 </TimelineSeparator>
                 <TimelineContent sx={{textAlign: 'left'}}>
-                    <p className=" text-gray-700 text-sm shadow-md  bg-[white]/70 font-semibold text-left tracking-wider p-2 rounded-lg w-full">
+                    <p className=" text-gray-700 text-md shadow-md  bg-[white] font-semibold text-left tracking-wider p-3 rounded-lg w-full">
                     {project.project}
                     </p>
                 </TimelineContent>

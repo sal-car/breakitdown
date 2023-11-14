@@ -53,7 +53,7 @@ export const Task = function ({projects, task, setProjects}) {
     }
 
     return (
-        <div className="Task bg-white/80 border rounded-3xl px-0 py-1">
+        <div className="Task bg-white/80 border rounded-3xl px-2 py-2">
             <div className="top  flex items-center justify-between">
                 <div className="left flex items-center">
                     {
@@ -62,7 +62,7 @@ export const Task = function ({projects, task, setProjects}) {
                         :
                         <Checkbox onChange={() => handleCheckChange(task.id)} checkedIcon={<CheckCircleIcon/>} color="success"/>
                     }
-                    <h3 className="text-gray-800 font-semibold ml-2 mr-2">{task.project}</h3>
+                    <h3 className="text-gray-800 text-lg font-semibold ml-2 mr-2">{task.project}</h3>
 
                 </div>
                 <p className="mr-5 font-semibold text-gray-500 ">{parseTime(task.date)}</p>

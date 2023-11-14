@@ -115,7 +115,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
                     </div> 
                 </form>
                 <div className="steps-container flex flex-col items-center gap-10 w-full ">
-                    <button onClick={breakItDown} className="bg-transparent hover:bg-violet-900 text-violet-900 font-semibold hover:text-white py-2 px-4 border w-fit border-violet-900 hover:border-transparent rounded  mx-5 mr-10">Break it down</button>
+                    <button onClick={breakItDown} className="bg-transparent hover:bg-violet-900 text-violet-900 font-semibold hover:text-white py-3 px-4 border w-fit border-violet-900 hover:border-transparent rounded  mx-5 mr-10">Break it down</button>
                     {isLoading && 
                         <FidgetSpinner
                         visible={true}

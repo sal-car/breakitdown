@@ -1,9 +1,10 @@
-import React from "react";
-import { useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import {toggleCompleted} from '../../api-service';
 import CloseIcon from '@mui/icons-material/Close';
+import { ProjectInfo } from "./project-info";
 
 export const Project = function ({handleDeleteClick, project, projects, setProjects}) {
+    const [openProjectInfo, setOpenProjectInfo] = useState(false)
 
     const convertToTitleCase = function (str) {
         if (!str) {
@@ -57,17 +58,20 @@ export const Project = function ({handleDeleteClick, project, projects, setProje
 
 
     return (
-        <div  className="bg-white/80 shadow-md flex flex-col rounded-lg w-70 pb-5 h-fit max-h-[220px] min-h-[210px]">
-            {/* <div className=" h-2 bg-[#779AF6] rounded-sm w-full"></div> */}
-            <div className="flex justify-between px-4 mt-4 mb-3">
-                <h2 className="tracking-tight text-xl font-medium leading-tight text-gray-800" >
+        <div className="bg-white	 shadow-md border flex flex-col rounded-xl px-1 w-70 pb-5 h-fit max-h-[220px] min-h-[270px] min-w-[300px]">
+            {openProjectInfo &&
+            <ProjectInfo project={project} projects={projects} setProjects={setProjects} setOpenProjectInfo={setOpenProjectInfo}></ProjectInfo>
+            }
+            <div className="flex justify-between pl-4 pr-1 mb-3">
+                <h2 className="tracking-tight text-xl mt-4 font-medium leading-tight text-gray-800" >
                     {convertToTitleCase(project.project)}
                 </h2>
                 <button className="align-top" onClick={(handleDeleteClick)}>
                     <CloseIcon style={{color: "#b5b1b1"}} className=""></CloseIcon>
                 </button>
             </div>
-            <div className="project-info justify-between grow px-5 flex flex-col">
+            <div className=" h-0.5 bg-black/40 rounded-lg w-full"></div>
+            <div onClick={() => setOpenProjectInfo(true)} className="project-info cursor-pointer justify-between grow px-5 flex flex-col">
                 {project.tasks.length ?
                     <div className="next-card mt-6 mb-5 ">
                         <p className="next font-xl mb-0 font-semibold tracking-wider text-gray-800">Next</p>

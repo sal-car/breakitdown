@@ -11,7 +11,7 @@ export const FilterByDate = function ({setShowingProjects, projects}) {
 
     return (
         <form action="">
-        <select className='bg-white/0 font-semibold text-gray-900 rounded-lg outline-none  w-full p-3' onChange={filter} name="filter">
+        <select className='p-2 bg-white/80 font-semibold text-gray-900 rounded-lg outline-none  w-full' onChange={filter} name="filter">
           <option  value="all">All</option>
           <option  value="today">Today</option>
           <option value="this-week">This week</option>

@@ -15,7 +15,7 @@ export const Navigation = function ({toggleCreateModal, openProjectDashboard, se
                 setOpenTaskDashboard={setOpenTaskDashboard}
                 ></Navbar>
                 </div>
-                <button className="bg-transparent text-lg hover:bg-black  text-black font-semibold hover:text-white py-3 px-5 border border-black  hover:border-transparent rounded-xl mr-14" onClick={toggleCreateModal}>New project</button>
+                <button className="bg-transparent text-lg hover:bg-black  text-black font-semibold hover:text-white py-3 px-5  hover:border-transparent rounded-xl mr-14" onClick={toggleCreateModal}>New project</button>
             </header>
         </div>
     )

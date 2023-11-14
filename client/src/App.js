@@ -19,6 +19,7 @@ function App() {
   const [openProjectDashboard, setOpenProjectDashboard] = useState(true)
   const [openTaskDashboard, setOpenTaskDashboard] = useState(false)
   const [isAuthenticated, setIsAuthenticated] = useState(true)
+  const [background, setBackground] = useState('mountains')
 
   const toggleCreateModal = function () {
     setOpenCreateModal(!openCreateModal)
@@ -41,7 +42,7 @@ function App() {
 
 
   return (
-    <div className="App"> {
+    <div className={`App ${background} `}> {
       !isAuthenticated &&
       <HeroSection></HeroSection>
       

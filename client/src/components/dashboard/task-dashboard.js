@@ -43,14 +43,14 @@ export const TaskDashboard = function ({setProjects, projects}) {
 
     return (
         <div className="main grid grid-cols-12 w-full h-full">
-            <div className="TaskDashboard  bg-white/60 rounded-3xl shadow-lg p-5 col-span-9 ml-5 h-fit">
+            <div className="TaskDashboard   rounded-3xl p-5 col-span-9 ml-5 h-fit">
                 <div className="info">
-                    <div className="header flex justify-between items-center gap-10 mb-5">
-                        <h1 className="text-2xl font-semibold text-gray-800">Tasks</h1>
+                    <div className="header flex justify-end items-center gap-10 mb-6">
+                        {/* <h1 className="text-2xl font-semibold text-gray-800">Tasks</h1> */}
                         <div className="filtering flex items-center gap-5">
                             <FilterByDate setShowingProjects={setTasks} projects={taskList} ></FilterByDate>
                             <form>
-                                <select name="project-select" className="bg-white/0 font-semibold text-gray-900 rounded-lg outline-none  w-full " onChange={filterByProject}>
+                                <select name="project-select" className=" p-2 font-semibold bg-white/80 text-gray-900 rounded-lg outline-none w-full " onChange={filterByProject}>
                                     <option value="all">All projects</option>
                                     { projects.map((project, index) => {
                                         return <option key={index} value={project.id}>{project.project}</option> 

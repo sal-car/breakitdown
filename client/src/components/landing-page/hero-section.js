@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { LoginPage } from './login';
 import { useRef } from 'react';
+// import Aboutimg from '../../../public/about-img.png'
+
 
 
 
@@ -22,13 +24,15 @@ export const HeroSection = function () {
                 <button onClick={handleClick} className="relative shadow-sm bg-transparent text-xl h-14 w-42 px-6 left-5 hover:bg-violet-900 text-violet-900 font-semibold hover:text-white border border-violet-900 hover:border-transparent rounded ">About</button>
                 <button onClick={handleClick} className="relative shadow-sm bg-transparent text-xl h-14 w-42 ml-5 px-6 left-6 hover:bg-violet-900 text-violet-900 font-semibold hover:text-white border border-violet-900 hover:border-transparent rounded ">Log in</button>
             </div>
-            <div id="about" className="About shadow-5xl bg-[#779BF6] h-[89vh] z-20 mt-1 ">
+            <div id="about" className="About shadow-5xl bg-[#779BF6] h-[89vh] z-20 ">
                 <div className="info absolute w-1/2 flex flex-col justify-center align-middle left-[24vw] top-[105vh]">
                 <h2 className='text-white mb-5 text-center text-5xl font-extrabold leading-none tracking-tight '>About</h2>
                 <p className=' text-white leading-7 text-center text-xl tracking-wide'>
-                Struggling with overwhelm? We got you. Meet breakitdown – where project chaos meets serene simplicity. Easily slice up your tasks, keep things on point, and take back the reins. Get your projects in check without the fuss.
+                Struggling with overwhelm? We got you. With breakitdown you will go from project chaos to simple serenity. We help you slice up your tasks, so you can keep things on point <span className='italic'>and get things done. </span>
                 </p>
+                <div className="about-img h-[52vh]">
 
+                </div>
                 </div>
             </div>
         </div>
