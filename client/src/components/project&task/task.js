@@ -30,7 +30,6 @@ export const Task = function ({projects, task, setProjects}) {
 
         const updatedProjects = projects.map((project) => {
             if (project.id === parentProject.id) {
-                console.log('HERE: ', project)
                 return {
                     ...project, 
                     tasks: updatedTasks

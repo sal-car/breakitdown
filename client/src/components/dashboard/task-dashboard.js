@@ -2,55 +2,34 @@ import { useEffect, useState } from "react"
 import {Task} from '../project&task/task'
 import React  from 'react';
 import { TimelineBox } from "./timeline";
-import { FilterByDate } from "./filter-by-date";
+import { FilterBy } from "./filter-by-date";
+import {filterProjectsBy} from "../../utils/filtering"
 
-/* 
 
-        const fetchOldProjects = async function () {
-            try {
-            const response = await getProjects();
-            console.log('RES', response)
-            setProjects([...response]);
-            } catch (error) {
-            console.log("Error when rendering projects: ", error);
-            }
-        }
-*/
 export const TaskDashboard = function ({setProjects, projects}) {
-    const [tasks, setTasks] = useState([])
+    const [tasks, setShowingTasks] = useState([])
     const taskList = projects.filter((project) => project.tasks?.length).map((project) => project.tasks).flat() // FIXME: make DRY
+    const [filter, setFilter] = useState('all')
+    const [projectFilter, setProjectFilter] = useState('all')
 
-    
     useEffect(() => {
-        setTasks([...taskList])
+        const filteredByDate = filterProjectsBy(filter, taskList)
+        const filteredByProject = filterProjectsBy(projectFilter, filteredByDate, projects)
+        setShowingTasks([...filteredByProject])
 
-
-    }, [projects])
-
-
-
-    const filterByProject = function (e) {
-        const selectedOption = e.target.value;
-        
-        if (selectedOption === 'all') setTasks([...taskList]);
-        else {
-            const projectsTasks = taskList.filter((task) => task.parent === selectedOption);
-            setTasks([...projectsTasks])
-        }
-    }
-
+    }, [filter, projectFilter, projects])
 
 
     return (
         <div className="main grid grid-cols-12 w-full h-full">
-            <div className="TaskDashboard   rounded-3xl p-5 col-span-9 ml-5 h-fit">
+            <div className="TaskDashboard rounded-3xl p-5 col-span-9 ml-5 h-fit">
                 <div className="info">
                     <div className="header flex justify-end items-center gap-10 mb-6">
                         {/* <h1 className="text-2xl font-semibold text-gray-800">Tasks</h1> */}
                         <div className="filtering flex items-center gap-5">
-                            <FilterByDate setShowingProjects={setTasks} projects={taskList} ></FilterByDate>
+                            <FilterBy setFilter={setFilter} ></FilterBy>
                             <form>
-                                <select name="project-select" className=" p-2 font-semibold bg-white/80 text-gray-900 rounded-lg outline-none w-full " onChange={filterByProject}>
+                                <select name="project-select" className=" p-2 font-semibold bg-white/80 text-gray-900 rounded-lg outline-none w-full " onChange={(e) => setProjectFilter(e.target.value)}>
                                     <option value="all">All projects</option>
                                     { projects.map((project, index) => {
                                         return <option key={index} value={project.id}>{project.project}</option> 
@@ -65,7 +44,7 @@ export const TaskDashboard = function ({setProjects, projects}) {
                 { tasks.length ? 
                     tasks.map((task, index) =>{
                         return (
-                            <Task key={index} projects={projects} task={task} setTasks={setTasks} tasks={tasks} setProjects={setProjects}></Task>
+                            <Task key={index} projects={projects} task={task} setShowingTasks={setShowingTasks} tasks={tasks} setProjects={setProjects}></Task>
                         )
                     })
                     :

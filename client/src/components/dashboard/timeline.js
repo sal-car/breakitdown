@@ -9,7 +9,7 @@ import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import moment from 'moment';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { filterProjectsByDate } from '../../utils/filtering';
+import { filterProjectsBy } from '../../utils/filtering';
 import StarBorderTwoToneIcon from '@mui/icons-material/StarBorderTwoTone';
 import AssignmentLateTwoToneIcon from '@mui/icons-material/AssignmentLateTwoTone';
 
@@ -28,7 +28,7 @@ export const TimelineBox = function (props) {
 
     const setContent = function () {
         if (projectIsATask()) {
-            const content = sortByDate(filterProjectsByDate('today', props.projects))
+            const content = sortByDate(filterProjectsBy('today', props.projects))
             setShowHourlySchedule(true)
             setTimelineList([...content])
         } else {

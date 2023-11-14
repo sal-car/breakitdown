@@ -5,7 +5,9 @@ import { useEffect } from 'react'
 import { ProjectInfo } from '../project&task/project-info'
 import { deleteProject } from '../../api-service'
 import { TimelineBox } from './timeline'
-import { FilterByDate } from './filter-by-date'
+import { FilterBy } from './filter-by-date'
+import {filterProjectsBy} from '../../utils/filtering'
+
 
 
 export const ProjectDashboard = function ({projects, setProjects}) {
@@ -13,11 +15,14 @@ export const ProjectDashboard = function ({projects, setProjects}) {
   const [clickedProject, setClickedProject] = useState({})
   const [showingProjects, setShowingProjects] = useState(projects)
   const [showOption, setShowOption] = useState(false)
+  // STETE WITH FITLERS 'ALL', 'TODAY'
+  const [filter, setFilter] = useState('all')
   
   useEffect(() => {
-    setShowingProjects(projects)
-
-  }, [projects])
+    // SET SHOWING PROJECTS TO FILTER THE PROJECTS STATE BASED ON FILTER STATE
+    const filtered = filterProjectsBy(filter, projects)
+    setShowingProjects([...filtered])
+  }, [filter, projects])
 
 
   const handleProjectClick = function (project) {
@@ -42,7 +47,7 @@ export const ProjectDashboard = function ({projects, setProjects}) {
         <div className="info"> 
           <div className="dashboard-header flex justify-end gap-10 mb-2">
               {/* <h1 className="text-2xl font-semibold text-gray-900">Projects</h1> */}
-              <FilterByDate setShowingProjects={setShowingProjects} projects={projects} ></FilterByDate>
+              <FilterBy setFilter={setFilter} ></FilterBy >
           </div>
         <button onClick={ () => setShowOption(!showOption)}  className='mb-4 text-lg font-semibold text-black'>
         {showOption ? 
