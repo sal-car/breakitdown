@@ -16,6 +16,7 @@
     "react-datepicker": "^4.21.0",
     "react-datetime": "^3.2.0",
     "react-dom": "^18.2.0",
+    "react-loader-spinner": "^5.4.5",
     "react-overlays": "^5.2.1",
     "react-scripts": "5.0.1",
     "uuid": "^9.0.1",

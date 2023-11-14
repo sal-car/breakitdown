@@ -6,7 +6,8 @@ import './styles.css'
 import getBreakdown, { sendToServer } from '../../api-service.js'
 import {v4 as uuidv4} from 'uuid'
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
-
+import CloseIcon from '@mui/icons-material/Close';
+import { FidgetSpinner } from  'react-loader-spinner'
 
 export const CreateProject = function ({toggleCreateModal, projects, setProjects}) {
     const [projectData, setprojectData] = useState({
@@ -17,6 +18,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
         tasks: []
     });
     const [steps, setSteps] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
 
     // Creating a step
     // if the project is provided (from api), add it to project prop, otherwise initialise as empty
@@ -32,6 +34,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
 
     // Breaking the project down
     const breakItDown = async function () {
+        setIsLoading(true)
         // get data from apiservice
         try {
             const data = await getBreakdown(projectData)
@@ -39,6 +42,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
                 const uuid = uuidv4()
                 return {project: entry.project, id: uuid, date: new Date(), parent: projectData.id, completed: false}
             })
+            setIsLoading(false)
             setSteps([...steps, ...newState])
         } catch (error) {
             console.log(error)
@@ -84,12 +88,12 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
 
     return ( 
     <div className='CreateProject overflow-y-auto overflow-x-hidden min-h-[100vh] fixed top-0 right-0 left-0 z-50 justify-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full  bg-gray-600/50'>	
-        <div className="relative p-4 min-w-fit max-w-fit max-h-full top-24 mx-auto">
+        <div className="relative p-4 min-w-fit max-w-fit max-h-full top-22 mx-auto">
             <div className="relative bg-white rounded-xl shadow px-10 py-8 flex flex-col">
                 <div className="header flex justify-between mb-12">
                     <h1 className="create-project-header text-2xl font-semibold">Create project</h1>
                     <button onClick={toggleCreateModal} className="close-modal">
-                        <HighlightOffRoundedIcon color="inherit" fontSize="large" className="absolute  top-[-4px] right-[-4px]"></HighlightOffRoundedIcon>
+                        <CloseIcon style={{color: "#b5b1b1"}} className="absolute top-[15px] right-[15px]"></CloseIcon>
                     </button>
                 </div>
                 <form onSubmit={saveProject} className="create-project-form">
@@ -103,7 +107,6 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
                                 <label htmlFor="date" className="font-semibold tracking-wide mb-1">Deadline</label>
                                 <DatePicker className="project-date outline-none border p-4 h-12 rounded-lg"closeOnScroll={true} showTimeSelect dateFormat="Pp"  selected={new Date(projectData.date)} onChange={(date) => setprojectData({...projectData, date: new Date(date)})} />
                             </div>
-
                         </div>
                         <div className="description flex flex-col gap-1 mb-10">
                             <label htmlFor="project-description" className=" font-semibold tracking-wide ">Description</label>
@@ -113,6 +116,18 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
                 </form>
                 <div className="steps-container flex flex-col items-center gap-10 w-full ">
                     <button onClick={breakItDown} className="bg-transparent hover:bg-violet-900 text-violet-900 font-semibold hover:text-white py-2 px-4 border w-fit border-violet-900 hover:border-transparent rounded  mx-5 mr-10">Break it down</button>
+                    {isLoading && 
+                        <FidgetSpinner
+                        visible={true}
+                        height="100"
+                        width="100"
+                        ariaLabel="dna-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="dna-wrapper"
+                        ballColors={['#F8DD6F', "#EC4F28", '#739AF5']}
+                        backgroundColor= '#4C1D95'
+                        />
+                    }
                     {
                         steps.map((step, index) => {
                             return (
@@ -120,7 +135,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
                                     <form key={index} className="create-project-form"> 
                                         <div className="name-date flex gap-5 items-center ">
                                             <button onClick={() => deleteStep(step.id)} className="delte-step-btn flex items-start">
-                                                <HighlightOffRoundedIcon color="secondary" className="self-start"></HighlightOffRoundedIcon>
+                                                <HighlightOffRoundedIcon style={{color: "#bd0606"}} className="self-start"></HighlightOffRoundedIcon>
                                             </button>
                                             <textarea required type="text" className="step-name w-[400px] border break-words outline-none rounded-lg p-2" onChange={handleInputChange} value={step.project} name={step.id} placeholder={`Step ${index+1}`}/>
                                             <DatePicker showTimeSelect onChange={(e) => handleDateChange(e, step.id)} className="step-date outline-none border p-4 h-12 rounded-lg" closeOnScroll={true} dateFormat="Pp" selected={new Date(step.date)} />

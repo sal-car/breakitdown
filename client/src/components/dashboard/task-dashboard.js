@@ -43,7 +43,7 @@ export const TaskDashboard = function ({setProjects, projects}) {
 
     return (
         <div className="main grid grid-cols-12 w-full h-full">
-            <div className="TaskDashboard  bg-white/60 rounded-3xl shadow-lg p-5 col-span-8 ml-5 h-fit">
+            <div className="TaskDashboard  bg-white/60 rounded-3xl shadow-lg p-5 col-span-9 ml-5 h-fit">
                 <div className="info">
                     <div className="header flex justify-between items-center gap-10 mb-5">
                         <h1 className="text-2xl font-semibold text-gray-800">Tasks</h1>
@@ -76,7 +76,7 @@ export const TaskDashboard = function ({setProjects, projects}) {
                 </div>
 
             </div>
-            <div className="col-span-4 mr-5">
+            <div className="col-span-3 mr-5">
                 <TimelineBox  projects={tasks}></TimelineBox>
             </div>
         </div>

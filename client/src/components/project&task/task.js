@@ -53,7 +53,7 @@ export const Task = function ({projects, task, setProjects}) {
     }
 
     return (
-        <div className="Task border rounded-lg px-1">
+        <div className="Task bg-white/80 border rounded-3xl px-0 py-1">
             <div className="top  flex items-center justify-between">
                 <div className="left flex items-center">
                     {

@@ -1,10 +1,12 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import { LoginPage } from './login';
 import { useRef } from 'react';
 
+
+
 export const HeroSection = function () {
     const [loginPage, setLoginPage] = useState(false)
-    const ref = useRef(null);
 
     const handleClick = function () {
         const about = document.getElementById("about");

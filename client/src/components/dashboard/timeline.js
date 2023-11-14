@@ -55,7 +55,13 @@ export const TimelineBox = function (props) {
 
   return (
     <div className=" bg-white/60 rounded-3xl shadow-lg py-5 px-2 min-h-[260px] ml-5 w-350 ">
-        <h1 className='text-2xl text-gray-800 font-semibold light:text-white mb-5 ml-3'>Timeline</h1>
+        <h1 className='text-2xl text-gray-800 font-semibold light:text-white mb-5 ml-3'>
+            {showHourlySchedule ?
+                "Today"
+                :
+                "Timeline"
+            }
+            </h1>
     <div className=" rounded-lg p-5 min-h-[315px]">
         <Timeline position="alternate">
         {

@@ -38,7 +38,7 @@ export const ProjectDashboard = function ({projects, setProjects}) {
     return (
       <div className="main grid grid-cols-12 w-full h-full">
 
-      <div className="Dashboard bg-white/60 rounded-3xl shadow-lg p-5 col-span-8 ml-5 h-fit pb-12">
+      <div className="Dashboard bg-white/60 rounded-3xl shadow-lg p-5 col-span-9 ml-5 h-fit pb-12">
         <div className="info"> 
           <div className="dashboard-header flex justify-between gap-10 mb-5">
               <h1 className='text-2xl font-semibold text-gray-800'>Projects</h1>
@@ -74,7 +74,7 @@ export const ProjectDashboard = function ({projects, setProjects}) {
             }
         </div>
       </div >
-      <div className="col-span-4 mr-5">
+      <div className="col-span-3 mr-5">
         <TimelineBox  projects={projects}></TimelineBox>
       </div>
     </div>

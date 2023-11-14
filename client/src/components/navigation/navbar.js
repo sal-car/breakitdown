@@ -1,38 +1,32 @@
 import React  from 'react';
 
-export const Navbar = function ({setOpenNavbar, setOpenProjectDashboard, setOpenTaskDashboard}) {
+export const Navbar = function ({setOpenProjectDashboard, setOpenTaskDashboard}) {
 
     const goToTaskDashboard = function () {
         setOpenProjectDashboard(false)
         setOpenTaskDashboard(true)
-        setOpenNavbar(false)
     }
 
     const goToProjectDashboard = function () {
         setOpenProjectDashboard(true)
         setOpenTaskDashboard(false)
-        setOpenNavbar(false)
 
     }
 
     return (
-        <div className="side-navbar">
-            <ul className="nav-list flex mb-5">
-                    {/* <h2 className="nav-header" >Dashboard</h2> */}
-                <li className="nav-list-item hover:bg-white/50 p-5 px-16 grow justify-center flex">
+        <div className="side-navbar ml-5">
+            <ul className="nav-list  flex justify-around mb-3">
+                <li className="nav-list-item text-lg text-slate-900 p-5 hover:bg-white/50 rounded-lg grow justify-center flex">
                     <button onClick={goToProjectDashboard} className="nav-option font-semibold">Projects</button>
                 </li>
-                <li className="nav-list-item p-5 hover:bg-white/50 rounded-lg grow justify-center flex">
+                <li className="nav-list-item text-lg text-slate-900 p-5 hover:bg-white/50 rounded-lg grow justify-center flex">
                     <button onClick={goToTaskDashboard} className="nav-option font-semibold">Tasks</button>
-
                 </li>
-                    {/* <h2 className="nav-header" >Create</h2> */}
-                    {/* <h2 className="nav-header" >Home</h2> */}
-                <li className="nav-list-item p-5 hover:bg-white/50 rounded-lg grow justify-center flex">
-                <button className="nav-option font-semibold">Profile</button>
+                <li className="nav-list-item text-lg text-slate-900 p-5 hover:bg-white/50 rounded-lg grow justify-center flex">
+                    <button className="nav-option font-semibold">Profile</button>
                 </li>
-                <li className="nav-list-item p-5 hover:bg-white/50 rounded-lg grow justify-center flex">
-                <button className="nav-option font-semibold">Settings</button>
+                    <li className="nav-list-item text-lg text-slate-900 p-5 hover:bg-white/50 rounded-lg grow justify-center flex">
+                    <button className="nav-option font-semibold">Settings</button>
                 </li>
             </ul>
         </div>

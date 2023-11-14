@@ -4,23 +4,21 @@ import {CreateProject} from './components/create-project/create-project.js';
 import {ProjectDashboard} from './components/dashboard/project-dashboard.js'
 import { useState } from 'react';
 import {Navigation} from './components/navigation/navigation.js'
-import { Navbar } from './components/navigation/navbar.js';
+// import { Navbar } from './components/navigation/navbar.js';
 import { getProjectsFromServer } from './api-service.js';
 import { useEffect } from 'react';
 import { TaskDashboard } from './components/dashboard/task-dashboard.js';
 import {HeroSection} from './components/landing-page/hero-section.js'
 
+
+/* eslint-disable */
+
 function App() {
   const [projects, setProjects] = useState([]);
   const [openCreateModal, setOpenCreateModal] = useState(false)
-  const [openNavbar, setOpenNavbar] = useState(false)
   const [openProjectDashboard, setOpenProjectDashboard] = useState(true)
   const [openTaskDashboard, setOpenTaskDashboard] = useState(false)
   const [isAuthenticated, setIsAuthenticated] = useState(true)
-
-  const handleNavbarClick = function () {
-    setOpenNavbar(!openNavbar)
-  }
 
   const toggleCreateModal = function () {
     setOpenCreateModal(!openCreateModal)
@@ -41,6 +39,7 @@ function App() {
     }, [])
 
 
+
   return (
     <div className="App"> {
       !isAuthenticated &&
@@ -50,24 +49,13 @@ function App() {
 
       <div className="App-0 m-0 min-h-[100vh] ">
           <Navigation className="h-100"
-          handleNavbarClick={handleNavbarClick} 
           toggleCreateModal={toggleCreateModal}
-          >
-          </Navigation>
-        {openNavbar ?
-          <Navbar 
-          setOpenNavbar={setOpenNavbar}
           openProjectDashboard={openProjectDashboard} 
           setOpenProjectDashboard={setOpenProjectDashboard}
           openTaskDashboard={openTaskDashboard} 
           setOpenTaskDashboard={setOpenTaskDashboard}
-          openNavbar={openNavbar}
-          style={{ height: `${openNavbar ? '300px' : '0px'}`, transition: 'height 1s ease-out'}}
           >
-          </Navbar>
-          :
-          <div></div>
-        }
+          </Navigation>
         {
           openProjectDashboard ?
           <ProjectDashboard projects={projects} setProjects={setProjects}/>
