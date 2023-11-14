@@ -14,19 +14,19 @@ export const Project = function ({handleDeleteClick, project, projects, setProje
       }
 
       useEffect(() => {
-        calculateProgress()
-      }, [project])
-
-      useEffect(() => {
         setProjectAsCompleted()
       }, [])
 
+    //   useEffect(() => {
+    //     setProjectAsCompleted()
+    //   }, [])
 
-    const calculateProgress = function () {
+
+    const calculateProgress = function (item=project) {
         let tasks = 0;
         let completedTasks = 0;
 
-        project.tasks.forEach((task) => {
+        item.tasks.forEach((task) => {
             tasks++
             if (task.completed === true) {
                 completedTasks++
@@ -37,23 +37,25 @@ export const Project = function ({handleDeleteClick, project, projects, setProje
     }
 
     const setProjectAsCompleted = function () {
-        const progress = calculateProgress()
-        if (progress === '100%') {
-            project.completed = true;
-            setProjects(() => {
-                return [...projects.map((proj) => {
-                    if (proj.id === project.id) {
-                        return {
-                            ...project,
-                            completed: true
-                        };
-                    } else {
-                        return proj;
-                    }
-                })]
-            });
+        
+        const updatedList = projects.map((proj) => {
+            if (calculateProgress(proj) === '100%') {
+                return {
+                    ...proj,
+                    completed: true
+                }
+            } else {
+                return {
+                    ...proj,
+                    completed: false
+                }
+            }
+        })
+            
+        setProjects(updatedList)
         toggleCompleted(project)
-        }
+
+
     }
 
 

@@ -1,20 +1,25 @@
-export const filterProjectsByDate = function (option, projects) {
+export const filterProjectsBy = function (option, items, itemsToFilterBy=null) {
+    if (option === 'all') return [...items];
+
+    // Filter by project
+    if (itemsToFilterBy != null) {
+        return items.filter((item) => item.parent === option)
+    }
+
+    // Filter by date
     let today = new Date();
 
     switch (option) {
 
-      case "all":
-        return [...projects];
-
       case "today": {
 
-        const todaysProjects = projects.filter((project) => {
+        const todaysItems = items.filter((project) => {
           return new Date(project.date).getDate() === today.getDate() &&
           new Date(project.date).getMonth() === today.getMonth() &&
           new Date(project.date).getYear() === today.getYear()
         })
 
-        return [...todaysProjects];
+        return [...todaysItems];
       }
       
       case "this-week": {
@@ -29,8 +34,8 @@ export const filterProjectsByDate = function (option, projects) {
           counter++;
         }
 
-        // FILTERING PROJECTS WITH DATE THIS WEEK
-        const thisWeeksProjects = projects.filter((project) => {
+        // FILTERING items WITH DATE THIS WEEK
+        const thisWeeksItems = items.filter((project) => {
           let projectDate = new Date(project.date);
 
           return week.some((date) => {
@@ -43,19 +48,19 @@ export const filterProjectsByDate = function (option, projects) {
           }
           )
           
-          return [...thisWeeksProjects];       
+          return [...thisWeeksItems];       
         }
           
           case "this-month": {
-            const thisMonthsProjects = projects.filter((project) => {
+            const thisMonthsItems = items.filter((project) => {
               return new Date(project.date).getMonth() == today.getMonth() &&
               new Date(project.date).getYear() == today.getYear()
             })
             
-            return [...thisMonthsProjects];
+            return [...thisMonthsItems];
           }
     
       default:
-        break;
+        return [...items];
     }
   }

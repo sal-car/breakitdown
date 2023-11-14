@@ -43,17 +43,19 @@ export const ProjectDashboard = function ({projects, setProjects}) {
     return (
       <div className="main grid grid-cols-12 w-full h-full">
 
-      <div className="Dashboard   rounded-3xl  p-5 col-span-9 ml-5 h-fit pb-12">
+      <div className="Dashboard   rounded-3xl  p-5 col-span-8 ml-5 h-fit pb-12">
         <div className="info"> 
           <div className="dashboard-header flex justify-end gap-10 mb-2">
               {/* <h1 className="text-2xl font-semibold text-gray-900">Projects</h1> */}
               <FilterBy setFilter={setFilter} ></FilterBy >
           </div>
         <button onClick={ () => setShowOption(!showOption)}  className='mb-4 text-lg font-semibold text-black'>
-        {showOption ? 
+        {projects.length > 3 ? showOption ? 
         'Show less'
-        : 
+        :
         'Show more'
+        : 
+        null
       }
       </button>
         {
@@ -65,7 +67,7 @@ export const ProjectDashboard = function ({projects, setProjects}) {
         } 
         </div>
         {/* FIXME: height transition not working properly, look for alternatives */}
-        <div className={`main-dashboard grid xl:grid-cols-4 grid-rows-10 overflow-hidden lg:grid-cols-3 md:grid-cols-2 sm-grid-cols-1 gap-5	`} style={{ height: `${showOption ? '600px' : '290px'}`, transition: 'height 0.5s ease-out'}} >
+        <div className={`main-dashboard grid xl:grid-cols-3 grid-rows-10 overflow-hidden lg:grid-cols-3 md:grid-cols-2 sm-grid-cols-1 gap-5	`} style={{ height: `${showOption ? '600px' : '290px'}`, transition: 'height 0.5s ease-out'}} >
             { showingProjects && showingProjects.length ? 
               showingProjects.map((project, index) => {
                 return (
@@ -79,7 +81,7 @@ export const ProjectDashboard = function ({projects, setProjects}) {
             }
         </div>
       </div >
-      <div className="col-span-3 mr-5">
+      <div className="col-span-4 mr-5">
         <TimelineBox  projects={projects}></TimelineBox>
       </div>
     </div>

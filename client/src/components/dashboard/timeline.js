@@ -12,6 +12,7 @@ import { filterProjectsBy } from '../../utils/filtering';
 import StarBorderTwoToneIcon from '@mui/icons-material/StarBorderTwoTone';
 import AssignmentLateTwoToneIcon from '@mui/icons-material/AssignmentLateTwoTone';
 import {formatDate} from '../../utils/dateformatting'
+import {sortByDate} from '../../utils/sorting'
 
 
 export const TimelineBox = function (props) {
@@ -28,10 +29,6 @@ export const TimelineBox = function (props) {
             setShowHourlySchedule(false)
             setTimelineList([...content])
         }
-    }
-
-    const sortByDate = function (projects) {
-        return [...projects.sort((a,b) => new Date(a.date) - new Date(b.date))]
     }
 
     const projectIsATask = function () {
@@ -61,15 +58,14 @@ export const TimelineBox = function (props) {
         timelineList.map((project, index) => (
             <TimelineItem key={index}>
                 <TimelineOppositeContent color="text.secondary" sx={{textAlign: 'right'}} > 
-                <p  className="mt-3">{formatDate(project, true)}</p>
+                <p  className="mt-3 font-bold">{formatDate(project, projectIsATask())}</p>
                 </TimelineOppositeContent>
                 <TimelineSeparator>
-                    <TimelineDot sx={{  "box-shadow": "0px 8px 15px rgba(0, 0, 0, 0.1)", "background-color": `${project.completed === true ? '#22C55E' : 'tarnsparent'}` }} >
+                    <TimelineDot sx={{  "box-shadow": "0px 8px 15px rgba(0, 0, 0, 0.1)", "background-color": `${project.completed === true ? '#22C55E' : 'transparent'}` }} >
                     {project.completed === true ? 
                     <StarBorderTwoToneIcon/>
                     : 
                     <AssignmentLateTwoToneIcon/>
-
                     }
                     </TimelineDot>
                     <TimelineConnector sx={{height: 70}} />

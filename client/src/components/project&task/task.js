@@ -1,22 +1,27 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import {toggleCompleted} from '../../api-service'
+import {toggleCompleted} from '../../api-service';
+import {formatDate} from '../../utils/dateformatting'
 
 // projects={projects} task={task} setTasks={setTasks} tasks={tasks} setProjects={setProjects}
 export const Task = function ({projects, task, setProjects}) {
-
-    const parseTime = function () {
-        const date = new Date(task.date)
-        const mins = String(date.getMinutes()).padStart(2, '0')
-        const hours = date.getHours()
-        return `${hours}:${mins}`
-    }
+    const [completed, setCompleted] = useState(false)
 
     const getParentProject = function () {
         const project = projects.find((project) => project.id === task.parent);
         return project;
     }
+    useEffect(() => {
+        const getCompletedStatus = function () {
+            return task.completed === true ? 
+            true
+            : 
+            false
+        }
+
+        setCompleted(getCompletedStatus())
+    }, [projects, task])
 
     const handleCheckChange = function (taskId) {
         const parentProject = getParentProject(taskId)
@@ -39,8 +44,8 @@ export const Task = function ({projects, task, setProjects}) {
             }
             })
 
-            saveCompletedStatus(task)
-            setProjects([...updatedProjects]);
+        saveCompletedStatus(task)
+        setProjects([...updatedProjects]);
     }       
 
     const saveCompletedStatus = function () {
@@ -55,16 +60,11 @@ export const Task = function ({projects, task, setProjects}) {
         <div className="Task bg-white/80 border rounded-3xl px-2 py-2">
             <div className="top  flex items-center justify-between">
                 <div className="left flex items-center">
-                    {
-                        task.completed === true ? 
-                        <Checkbox defaultChecked onChange={() => handleCheckChange(task.id)} checkedIcon={<CheckCircleIcon/>} color="success"/>
-                        :
-                        <Checkbox onChange={() => handleCheckChange(task.id)} checkedIcon={<CheckCircleIcon/>} color="success"/>
-                    }
+                        <Checkbox checked={completed} onChange={() => handleCheckChange(task.id)} checkedIcon={<CheckCircleIcon/>} color="success"/>
                     <h3 className="text-gray-800 text-lg font-semibold ml-2 mr-2">{task.project}</h3>
 
                 </div>
-                <p className="mr-5 font-semibold text-gray-500 ">{parseTime(task.date)}</p>
+                <p className="mr-5 font-semibold text-gray-500 ">{ `${formatDate(task, false)}  ${formatDate(task, true)}` }</p>
             </div>
             <div className="bottom ml-14 mb-1">
                 <p className="text-sm text-gray-500">{getParentProject(task.parent).project}</p>

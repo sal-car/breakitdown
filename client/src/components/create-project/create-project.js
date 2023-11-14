@@ -40,8 +40,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
         try {
             const data = await getBreakdown(projectData)
             const newState = data.map((entry) => {
-                const uuid = uuidv4()
-                return {project: entry.project, id: uuid, date: new Date(), parent: projectData.id, completed: false}
+                return {project: entry.project, id: uuidv4(), date: new Date(), parent: projectData.id, completed: false}
             })
             setIsLoading(false)
             setSteps([...steps, ...newState])
@@ -106,7 +105,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
                             </div>
                             <div className="date-picker flex flex-col mb-12">
                                 <label htmlFor="date" className="font-semibold tracking-wide mb-1">Deadline</label>
-                                <DatePicker className="project-date outline-none border p-4 h-12 rounded-lg"closeOnScroll={true} showTimeSelect dateFormat="Pp"  selected={new Date(projectData.date)} onChange={(date) => setprojectData({...projectData, date: new Date(date)})} />
+                                <DatePicker todayButton="Today" className="project-date outline-none border p-4 h-12 rounded-lg"closeOnScroll={true} showTimeSelect dateFormat="Pp"  selected={new Date(projectData.date)} onChange={(date) => setprojectData({...projectData, date: new Date(date)})} />
                             </div>
                         </div>
                         <div className="description flex flex-col gap-1 mb-10">

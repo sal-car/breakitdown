@@ -9,6 +9,7 @@ import { getProjectsFromServer } from './api-service.js';
 import { useEffect } from 'react';
 import { TaskDashboard } from './components/dashboard/task-dashboard.js';
 import {HeroSection} from './components/landing-page/hero-section.js'
+import { Settings } from './components/settings/settings.js';
 
 
 /* eslint-disable */
@@ -18,7 +19,8 @@ function App() {
   const [openCreateModal, setOpenCreateModal] = useState(false)
   const [openProjectDashboard, setOpenProjectDashboard] = useState(true)
   const [openTaskDashboard, setOpenTaskDashboard] = useState(false)
-  const [isAuthenticated, setIsAuthenticated] = useState(true)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [openSettings, setOpenSettings] = useState(false)
   const [background, setBackground] = useState('mountains')
 
   const toggleCreateModal = function () {
@@ -42,19 +44,19 @@ function App() {
 
 
   return (
-    <div className={`App ${background} `}> {
+    <div className={`App ${background} scrollbar-hide`}> {
       !isAuthenticated &&
-      <HeroSection></HeroSection>
+      <HeroSection setIsAuthenticated={setIsAuthenticated}></HeroSection>
       
       ||
 
       <div className="App-0 m-0 min-h-[100vh] ">
           <Navigation className="h-100"
           toggleCreateModal={toggleCreateModal}
-          openProjectDashboard={openProjectDashboard} 
           setOpenProjectDashboard={setOpenProjectDashboard}
-          openTaskDashboard={openTaskDashboard} 
           setOpenTaskDashboard={setOpenTaskDashboard}
+          setOpenSettings={setOpenSettings}
+
           >
           </Navigation>
         {
@@ -75,6 +77,12 @@ function App() {
             :
             null
         } 
+        {
+          openSettings ?
+          <Settings setBackground={setBackground}/>
+          :
+          null
+        }
       </div>
   }
     </div>

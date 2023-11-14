@@ -36,11 +36,8 @@ export const ProjectInfo = function ({project, projects, setProjects, setOpenPro
                                     project.tasks.map((task, index) => {
                                         return (
                                             <div key={index} className="mt-2">
-                                                <Task projects={projects} task={task} setProjects={setProjects}></Task>
+                                                <Task key={index} projects={projects} task={task} setProjects={setProjects}></Task>
                                             </div>
-                                        // <div key={index} className="project-info-task">
-                                        //     <p className="text-gray-800 font-semibold ml-2 mr-2 my-2 py-2 rounded-3xl px-2 ">{task.project}</p>
-                                        // </div>
                                         )
                                     })
                             }
