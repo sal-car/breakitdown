@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import {Task} from '../project&task/task'
-import React  from 'react';
 import { TimelineBox } from "./timeline";
 import { FilterBy } from "./filter-by-date";
 import {filterProjectsBy} from "../../utils/filtering"
-// import {sortByDate} from '../../utils/sorting'
 
 
 export const TaskDashboard = function ({setProjects, projects}) {
@@ -25,7 +23,6 @@ export const TaskDashboard = function ({setProjects, projects}) {
             <div className="TaskDashboard rounded-3xl p-5 col-span-8 ml-5 h-fit">
                 <div className="info">
                     <div className="header flex justify-end items-center gap-10 mb-6">
-                        {/* <h1 className="text-2xl font-semibold text-gray-800">Tasks</h1> */}
                         <div className="filtering flex items-center gap-5">
                             <FilterBy setFilter={setFilter} ></FilterBy>
                             <form>
@@ -42,7 +39,7 @@ export const TaskDashboard = function ({setProjects, projects}) {
                 </div>
                 <div className="list-dashboard flex flex-col gap-5">
                 { tasks.length ? 
-                    tasks.map((task, index) =>{
+                    tasks.map((task, index) => {
                         return (
                             <Task key={index} projects={projects} task={task} setProjects={setProjects}></Task>
                         )
@@ -53,7 +50,6 @@ export const TaskDashboard = function ({setProjects, projects}) {
                   </div>
                 }
                 </div>
-
             </div>
             <div className="col-span-4 mr-5">
                 <TimelineBox  projects={tasks}></TimelineBox>

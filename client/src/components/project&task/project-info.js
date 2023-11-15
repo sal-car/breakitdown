@@ -41,7 +41,6 @@ export const ProjectInfo = function ({project, projects, setProjects, setOpenPro
                                         )
                                     })
                             }
-
                         </div>
                     </div>
                 </div>

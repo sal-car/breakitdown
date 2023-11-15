@@ -88,7 +88,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
 
     return ( 
     <div className='CreateProject overflow-y-auto overflow-x-hidden min-h-[100vh] fixed top-0 right-0 left-0 z-50 justify-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full  bg-gray-600/50'>	
-        <div className="relative p-4 min-w-fit max-w-fit max-h-full top-22 mx-auto">
+        <div className="relative p-4 min-w-fit max-w-[50vw] max-h-full top-22 mx-auto">
             <div className="relative bg-white rounded-xl shadow px-10 py-8 flex flex-col">
                 <div className="header flex justify-between mb-12">
                     <h1 className="create-project-header text-2xl font-semibold">Create project</h1>
@@ -131,17 +131,15 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
                     {
                         steps.map((step, index) => {
                             return (
-                                // <div className="step w-full" key={index}>
                                     <form key={index} className="create-project-form"> 
-                                        <div className="name-date flex gap-5 items-center ">
+                                        <div className="name-date flex gap-8 items-center ">
                                             <button onClick={(e) => deleteStep(e, step.id)} className="delte-step-btn flex items-start">
                                                 <HighlightOffRoundedIcon style={{color: "#bd0606"}} className="self-start"></HighlightOffRoundedIcon>
                                             </button>
                                             <textarea required type="text" className="step-name w-[400px] border break-words outline-none rounded-lg p-2" onChange={handleInputChange} value={step.project} name={step.id} placeholder={`Step ${index+1}`}/>
-                                            <DatePicker showTimeSelect onChange={(e) => handleDateChange(e, step.id)} className="step-date outline-none border p-4 h-12 rounded-lg" closeOnScroll={true} dateFormat="Pp" selected={new Date(step.date)} />
+                                            <DatePicker showTimeSelect onChange={(e) => handleDateChange(e, step.id)} className="step-date outline-none border w-80 p-4 h-12 rounded-lg" closeOnScroll={true} dateFormat="Pp" selected={new Date(step.date)} />
                                         </div>
                                     </form>
-                                // </div>
                             )
                         })
                     }

@@ -6,19 +6,19 @@ export const Navbar = function ({setOpenProjectDashboard, setOpenTaskDashboard, 
         setOpenSettings(false)
         setOpenProjectDashboard(false)
         setOpenTaskDashboard(true)
-    }
+    };
 
     const goToProjectDashboard = function () {
         setOpenTaskDashboard(false)
         setOpenSettings(false)
         setOpenProjectDashboard(true)
-    }
+    };
 
     const goToSettings = function () {
         setOpenProjectDashboard(false)
         setOpenTaskDashboard(false)
         setOpenSettings(true)
-    }
+    };
 
     return (
         <div className="side-navbar ml-10">

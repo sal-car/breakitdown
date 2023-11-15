@@ -1,21 +1,14 @@
-/* eslint-disable */
 import React, { useState } from 'react';
 import { LoginPage } from './login';
-import { useRef } from 'react';
-// import Aboutimg from '../../../public/about-img.png'
-
-
 
 
 export const HeroSection = function ({setIsAuthenticated}) {
-    const [openLoginPage, setOpenLoginPage] = useState(false)
+    const [openLoginPage, setOpenLoginPage] = useState(false);
 
     const scrollToAbout = function () {
         const about = document.getElementById("about");
-        about.scrollIntoView({behavior: "smooth"})
+        about.scrollIntoView({behavior: "smooth"});
     };
-
-
 
     return (
         <div className="wrapper">
@@ -30,13 +23,11 @@ export const HeroSection = function ({setIsAuthenticated}) {
             </div>
             <div id="about" className="About shadow-5xl bg-[#779BF6] h-[89vh] z-20 ">
                 <div className="info absolute w-1/2 flex flex-col justify-center align-middle left-[24vw] top-[105vh]">
-                <h2 className='text-white mb-5 text-center text-5xl font-extrabold leading-none tracking-tight '>About</h2>
-                <p className=' text-white leading-7 text-center text-xl tracking-wide'>
-                Struggling with overwhelm? We got you. With breakitdown you will go from project chaos to simple serenity. We help you slice up your tasks, so you can keep things on point <span className='italic'>and get things done. </span>
-                </p>
-                <div className="about-img h-[52vh]">
-
-                </div>
+                    <h2 className='text-white mb-5 text-center text-5xl font-extrabold leading-none tracking-tight '>About</h2>
+                    <p className=' text-white leading-7 text-center text-xl tracking-wide'>
+                    Struggling with overwhelm? We got you. With breakitdown you will go from project chaos to simple serenity. We help you slice up your tasks, so you can keep things on point <span className='italic'>and get things done. </span>
+                    </p>
+                    <div className="about-img h-[52vh]"></div>
                 </div>
             </div>
         </div>

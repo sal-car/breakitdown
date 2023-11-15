@@ -4,7 +4,6 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import {toggleCompleted} from '../../api-service';
 import {formatDate} from '../../utils/dateformatting'
 
-// projects={projects} task={task} setTasks={setTasks} tasks={tasks} setProjects={setProjects}
 export const Task = function ({projects, task, setProjects}) {
     const [completed, setCompleted] = useState(false)
 

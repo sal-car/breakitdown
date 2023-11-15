@@ -4,7 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { ProjectInfo } from "./project-info";
 
 export const Project = function ({handleDeleteClick, project, projects, setProjects}) {
-    const [openProjectInfo, setOpenProjectInfo] = useState(false)
+    const [openProjectInfo, setOpenProjectInfo] = useState(false);
 
     const convertToTitleCase = function (str) {
         if (!str) {
@@ -15,11 +15,7 @@ export const Project = function ({handleDeleteClick, project, projects, setProje
 
       useEffect(() => {
         setProjectAsCompleted()
-      }, [])
-
-    //   useEffect(() => {
-    //     setProjectAsCompleted()
-    //   }, [])
+      }, []);
 
 
     const calculateProgress = function (item=project) {
@@ -31,10 +27,10 @@ export const Project = function ({handleDeleteClick, project, projects, setProje
             if (task.completed === true) {
                 completedTasks++
             }
-        })
+        });
 
-        return completedTasks === 0 ? '1%' : `${(completedTasks / tasks) * 100}%`
-    }
+        return completedTasks === 0 ? '1%' : `${(completedTasks / tasks) * 100}%`;
+    };
 
     const setProjectAsCompleted = function () {
         
@@ -50,12 +46,10 @@ export const Project = function ({handleDeleteClick, project, projects, setProje
                     completed: false
                 }
             }
-        })
-            
-        setProjects(updatedList)
-        toggleCompleted(project)
+        });
 
-
+        setProjects(updatedList);
+        toggleCompleted(project);
     }
 
 

@@ -21,6 +21,9 @@ export const getBreakdown = async function (project) {
     }
 }
 
+// Requests to save the project in the server
+// parameter: project {project: "Wash my dogs", description: "Lulu needs a bath", id: "uuidv4", date: Date object}
+// returns server response
 export const sendToServer = async function (project) {
     try {
         const response = await fetch(BASE_URL + '/projects', {
@@ -37,6 +40,8 @@ export const sendToServer = async function (project) {
     }
 }
 
+// Fetches projects from server
+// returns: result {project: "Wash my dogs", description: "Lulu needs a bath", id: "uuidv4", date: Date object}
 export const getProjectsFromServer = async function () {
     try {
         const response = await fetch(BASE_URL + '/projects', {
@@ -49,6 +54,9 @@ export const getProjectsFromServer = async function () {
     }
 }
 
+// Requests a deletion of a project from server
+// parameter: project {project: "Wash my dogs", description: "Lulu needs a bath", id: "uuidv4", date: Date object}
+// returns server response
 export const deleteProject = async function (project) {
     try {
         const response = await fetch(BASE_URL + '/projects', {
@@ -65,6 +73,9 @@ export const deleteProject = async function (project) {
     }
 }
 
+// Requests that the project's completed property be updated
+// parameter: project {project: "Wash my dogs", description: "Lulu needs a bath", id: "uuidv4", date: Date object}
+// returns server response
 export const toggleCompleted = async function (project) {
     try {
         const response = await fetch(BASE_URL + '/projects', {
@@ -79,7 +90,3 @@ export const toggleCompleted = async function (project) {
         console.log('Error in apiservice when updating project: ', error)
     }
 }
-
-export default getBreakdown;
-// const testProject = {project: "Wash my dogs", description: "Lulu needs a bath"}
-// getBreakdown(testProject)
