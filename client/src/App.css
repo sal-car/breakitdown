@@ -2,18 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* html, 
-body {
-  overflow: hidden;
-} */
 *::-webkit-scrollbar {
   display: none;
 }
 
 .HeroSection {
-  /* background-color: aliceblue; */
-  /* position: sticky;
-  top: -30px; */
   background-image: url('../public/hero-section-transformed.png');
   background-repeat: no-repeat; 
   background-attachment: fixed;

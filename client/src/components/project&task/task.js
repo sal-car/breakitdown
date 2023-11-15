@@ -5,33 +5,39 @@ import {toggleCompleted} from '../../api-service';
 import {formatDate} from '../../utils/dateformatting'
 
 export const Task = function ({projects, task, setProjects}) {
-    const [completed, setCompleted] = useState(false)
+    const [completed, setCompleted] = useState(false);
 
+    // Helper to get the parent the task belongs to - used to set the completed status 
+    // of the entire project when all tasks are done
     const getParentProject = function () {
         const project = projects.find((project) => project.id === task.parent);
         return project;
-    }
+    };
+
+    // When projects or current task is updated, check if it's completed or not and reflect that in the state of the task
     useEffect(() => {
         const getCompletedStatus = function () {
             return task.completed === true ? 
             true
             : 
             false
-        }
+        };
 
         setCompleted(getCompletedStatus())
-    }, [projects, task])
+    }, [projects, task]);
 
+    // When user clisks on the completed checkbox, toggle the task's completed property
     const handleCheckChange = function (taskId) {
         const parentProject = getParentProject(taskId)
 
         const updatedTasks = parentProject.tasks.map((task) => {
             if (task.id === taskId) {
-                task.completed = !task.completed
+                task.completed = !task.completed;
             }
             return task;
-        })
+        });
 
+        
         const updatedProjects = projects.map((project) => {
             if (project.id === parentProject.id) {
                 return {
@@ -41,7 +47,7 @@ export const Task = function ({projects, task, setProjects}) {
             } else {
                 return project;
             }
-            })
+            });
 
         saveCompletedStatus(task)
         setProjects([...updatedProjects]);
@@ -51,9 +57,9 @@ export const Task = function ({projects, task, setProjects}) {
         try {
             toggleCompleted(task);
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-    }
+    };
 
     return (
         <div className="Task bg-white/80 border rounded-3xl px-2 py-2">
