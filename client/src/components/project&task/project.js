@@ -6,6 +6,7 @@ import { ProjectInfo } from "./project-info";
 export const Project = function ({handleDeleteClick, project, projects, setProjects}) {
     const [openProjectInfo, setOpenProjectInfo] = useState(false);
 
+    // Helper to convert project to title case
     const convertToTitleCase = function (str) {
         if (!str) {
             return ""
@@ -13,11 +14,13 @@ export const Project = function ({handleDeleteClick, project, projects, setProje
         return str.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
       }
 
+    // On render, set completed status of projects 
       useEffect(() => {
         setProjectAsCompleted()
       }, []);
 
 
+    // Helper to check the project's percentage of completed tasks, return 1% if 0 (so that progress bar can show a bit of green)
     const calculateProgress = function (item=project) {
         let tasks = 0;
         let completedTasks = 0;
@@ -32,6 +35,7 @@ export const Project = function ({handleDeleteClick, project, projects, setProje
         return completedTasks === 0 ? '1%' : `${(completedTasks / tasks) * 100}%`;
     };
 
+    // Check if project is completed, and set the project's state to reflect this
     const setProjectAsCompleted = function () {
         
         const updatedList = projects.map((proj) => {
