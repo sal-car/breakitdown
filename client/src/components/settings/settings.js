@@ -1,14 +1,6 @@
-// import React, { useEffect, useState } from 'react';
 import React from 'react';
 
 export const Settings = function ({setBackground}) {
-
-    // useEffect(() => {
-    //     const changeBackgroundImage = function () {
-    //         const appElement = document.getElementById("App");
-
-    //     }
-    // })
 
     return (
         <div className="Settings ml-16 mt-20">
