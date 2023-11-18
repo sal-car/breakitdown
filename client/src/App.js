@@ -4,7 +4,6 @@ import {CreateProject} from './components/create-project/create-project.js';
 import {ProjectDashboard} from './components/dashboard/project-dashboard.js'
 import { useState } from 'react';
 import {Navigation} from './components/navigation/navigation.js'
-// import { Navbar } from './components/navigation/navbar.js';
 import { getProjectsFromServer } from './api-service.js';
 import { useEffect } from 'react';
 import { TaskDashboard } from './components/dashboard/task-dashboard.js';
@@ -12,7 +11,7 @@ import {HeroSection} from './components/landing-page/hero-section.js'
 import { Settings } from './components/settings/settings.js';
 
 
-/* eslint-disable */
+
 
 function App() {
   const [projects, setProjects] = useState([]);

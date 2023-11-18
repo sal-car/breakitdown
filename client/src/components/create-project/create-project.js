@@ -2,7 +2,6 @@ import { useState } from "react";
 import React  from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import './styles.css'
 import { getBreakdown, sendToServer } from '../../api-service.js'
 import {v4 as uuidv4} from 'uuid'
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
