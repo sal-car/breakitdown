@@ -1,4 +1,4 @@
-import API_KEY from '../secrets/apikey.js';
+import { API_KEY } from '../secrets/apikey.js'
 import OpenAI from 'openai'
 
 
