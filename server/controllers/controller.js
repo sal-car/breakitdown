@@ -3,7 +3,7 @@ import {db} from '../models/index.js'
 
 export async function getDataFromAPI (req, res) {
     // TODO check if req.body has correct format
-    console.log(req.body)
+    // console.log(req.body)
   try {
     const data = await getDataFromOpenAI(req.body);
     res.status(200)
@@ -17,9 +17,9 @@ export async function getDataFromAPI (req, res) {
 export async function postProject (req, res) {
   try {
     const newProject = req.body;
-    console.log(newProject)
+    // console.log(newProject)
     const response = await db.create(newProject);
-    console.log(response)
+    // console.log(response)
     res.status(201);
     res.send(response);
 } catch (err) {
@@ -42,7 +42,7 @@ export async function getProjects (req, res) {
 export async function deleteProject (req, res) {
     try {
         const response = await db.deleteOne({id: req.body.id})
-        console.log('deleted: ', response);
+        // console.log('deleted: ', response);
         res.status(201);
         res.send(response);
     } catch (error) {
@@ -53,7 +53,7 @@ export async function deleteProject (req, res) {
 export async function setAsCompleted (req, res) {
     const id = req.body.id
     const newVal = req.body.completed
-    console.log(req.body)
+    // console.log(req.body)
     try {
         const response = await db.updateOne({
             "tasks.id": id
@@ -67,7 +67,7 @@ export async function setAsCompleted (req, res) {
             arrayFilters: [ { "xxx.id": id } ]
         },
         )
-        console.log('updated: ', response);
+        // console.log('updated: ', response);
         res.status(201);
         res.send(response);
     } catch (error) {

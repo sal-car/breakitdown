@@ -17,6 +17,7 @@ export const HeroSection = function ({setIsAuthenticated}) {
             <LoginPage setOpenLoginPage={setOpenLoginPage} setIsAuthenticated={setIsAuthenticated}></LoginPage>
             }
             <div className="HeroSection inset-0 z-0 h-[91vh]">
+                {/* FIXME do something with this button */}
                 <button className="sticky shadow-md text-3xl h-20 w-44 top-[61.5vh] left-[44vw] bg-[#EA5127] hover:bg-transparent  hover:text-[#EA5127] font-normal font-sans text-white py-2 px-3 border hover:border-[#EA5127]  border-transparent rounded-xl ">Get started</button>
                 <button onClick={scrollToAbout} className="relative shadow-sm bg-transparent text-xl h-14 w-42 px-6 left-5 hover:bg-violet-900 text-violet-900 font-semibold hover:text-white border border-violet-900 hover:border-transparent rounded ">About</button>
                 <button onClick={() => setOpenLoginPage(true)}  className="relative shadow-sm bg-transparent text-xl h-14 w-42 ml-5 px-6 left-6 hover:bg-violet-900 text-violet-900 font-semibold hover:text-white border border-violet-900 hover:border-transparent rounded ">Log in</button>

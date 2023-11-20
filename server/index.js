@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(bodyParser.json())
 app.use(cors());
 app.use(router);
-console.log('working')
+// console.log('working')
 
 
 app.listen(port, () => {

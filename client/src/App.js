@@ -30,7 +30,7 @@ function App() {
     const fetchOldProjects = async function () {
       try {
         const response = await getProjectsFromServer()
-        console.log(response)
+        // console.log(response)
 
         setProjects([...response])
       } catch (error) {

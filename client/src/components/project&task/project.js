@@ -11,7 +11,7 @@ export const Project = function ({handleDeleteClick, project, projects, setProje
         if (!str) {
             return ""
         }
-        return str.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
+        return str.toLowerCase().replace(/(?<!')\b\w/g, s => s.toUpperCase());
       }
 
     // On render, set completed status of projects 

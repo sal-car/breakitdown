@@ -61,12 +61,17 @@ export const TimelineBox = function (props) {
                 <TimelineSeparator>
                     <TimelineDot sx={{  "box-shadow": "0px 8px 15px rgba(0, 0, 0, 0.1)", "background-color": `${project.completed === true ? '#22C55E' : 'transparent'}` }} >
                     {project.completed === true ? 
-                    <StarBorderTwoToneIcon/>
-                    : 
-                    <AssignmentLateTwoToneIcon/>
+                        <StarBorderTwoToneIcon/>
+                        : 
+                        <AssignmentLateTwoToneIcon/>
                     }
                     </TimelineDot>
-                    <TimelineConnector sx={{height: 70}} />
+                    {/* ONLY RENDER CONNECTOR IF THERE ARE MORE PROJECTS TO RENDER */}
+                    {(index + 1 !== timelineList.length) ?
+                        <TimelineConnector sx={{height: 70}} />
+                        :
+                        null
+                    }
                 </TimelineSeparator>
                 <TimelineContent sx={{textAlign: 'left'}}>
                     <p className=" text-gray-700 text-md shadow-md  bg-[white] font-semibold text-left tracking-wider p-3 rounded-lg w-full">
