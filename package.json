@@ -8,5 +8,8 @@
     "nodemon": "^3.0.1",
     "openai": "^4.0.0"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
