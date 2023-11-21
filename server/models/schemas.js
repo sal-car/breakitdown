@@ -1,17 +1,17 @@
-import mongoose from "mongoose"
+import mongoose from 'mongoose';
 
 const taskSchema = new mongoose.Schema({
-    project: String,
-    id: String,
-    date: Date,
-    parent: String,
-    completed: Boolean
-})
+	task: String,
+	id: String,
+	date: Date,
+	parent: String,
+	completed: Boolean,
+});
 
 export const projectSchema = new mongoose.Schema({
-    project: String,
-    date: Date,
-    description: String,
-    id: String,
-    tasks: [taskSchema]
-})
+	project: String,
+	date: Date,
+	description: String,
+	id: String,
+	tasks: [taskSchema],
+});

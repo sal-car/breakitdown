@@ -1,58 +1,65 @@
-import API_KEY from '../secrets/apikey.js';
-import OpenAI from 'openai'
+const API_KEY = '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';
+import OpenAI from 'openai';
 
+async function getDataFromOpenAI(request) {
+	// console.log('getDataFromOpenAI api.js. request', request);
+	const response = await requestDataFromOpenAI(
+		request.project,
+		request.description
+	);
+	if (!response) return null;
 
-// Fetches data from OpenAI API
-// parameter: Object {project: "Clean my room", description: "My room is a mess"}
-// returns: Array [{project: "Gather cleaning supplies"}, ...] OR null if error in API request
-async function getDataFromOpenAI (request) {
-    console.log(request)
-        const response = await requestDataFromOpenAI(request.project, request.description);
-        if (!response) return null;
+	// console.log('getDataFromOpenAI api.js. response', response);
+	const data = formatResponse(response.choices[0].text);
 
-        console.log(response)
-        const data = formatResponse(response.choices[0].text);
-
-        // console.log('data: ', data)
-        return data;
-};
+	// console.log('data: ', data)
+	return data;
+}
 
 // requests data from OpenAI API
-async function requestDataFromOpenAI (name, description=null) {
-    const openai = new OpenAI({
-        apiKey: API_KEY,
-    });
+async function requestDataFromOpenAI(name, description = null) {
+	const openai = new OpenAI({
+		apiKey: API_KEY,
+	});
 
-    try {
-        const response = await openai.completions.create({
-            model:"gpt-3.5-turbo-instruct",
-            prompt:`Divide the following project into small, manageable tasks. Begin each task with \"-\". Min 3 tasks, max 8 tasks.\nProject: ${name}\nDescription: ${description} `,
-            temperature:1,
-            max_tokens:140,
-            top_p:1,
-            frequency_penalty:0,
-            presence_penalty:0.4
-        });
-        // console.log('response: ', response)
+	try {
+		const response = await openai.completions.create({
+			model: 'gpt-3.5-turbo-instruct',
+			prompt: `Divide the following project into small, manageable tasks. Begin each task with \"-\". Min 3 tasks, max 8 tasks.\nProject: ${name}\nDescription: ${description} `,
+			temperature: 1,
+			max_tokens: 500,
+			top_p: 1,
+			frequency_penalty: 0,
+			presence_penalty: 0.4,
+		});
+		// console.log('response: ', response)
 
-        return response;
-    } catch (err) {
-        console.log('Error with API request to OpenAI: ', err);
+		return response;
+	} catch (err) {
+		console.log(
+			'requestDataFromOpenAI api.js. Error with API request to OpenAI: ',
+			err
+		);
 
-        return null;
-    };
-};
+		return null;
+	}
+}
 
 // cleans and formats response
-function formatResponse (response) {
-    // console.log('dirty: ', response)
-    const cleanedUpList = response.split('\n').map((str) => str.replaceAll(/^([\d\p{P}\p{Z}]+)/gu, '').trim()).filter((str) => str != '\n' && str != '')
-    // console.log('clean: ', cleanedUpList)
-    const formattedList = cleanedUpList.map((str) => {return {project: str}});
-    
-    return formattedList;
-};
+function formatResponse(response) {
+	// console.log('dirty: ', response)
+	const cleanedUpList = response
+		.split('\n')
+		.map((str) => str.replaceAll(/^([\d\p{P}\p{Z}]+)/gu, '').trim())
+		.filter((str) => str != '\n' && str != '');
+	// console.log('clean: ', cleanedUpList)
+	const formattedList = cleanedUpList.map((str) => {
+		return { task: str }; // was parent
+	});
 
+	// console.log('formattedlist: ', formattedList);
+	return formattedList;
+}
 
 export default getDataFromOpenAI;
 
