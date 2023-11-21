@@ -1,16 +1,33 @@
 import {getDataFromAPI, postProject, getProjects, deleteProject, setAsCompleted} from '../controllers/controller';
 const request = require('supertest');
-import router from '../router';
+import mongoose from 'mongoose';
+// Creating a new router???
+import express from 'express';
+const app = express();
+const router = express.Router();
+// Defining the routes??? (copy paste from controller)
+// For some reason this works
+router.post('/breakdown', getDataFromAPI);
+router.post('/projects', postProject);
+router.get('/projects', getProjects);
+router.delete('/projects', deleteProject);
+router.put('/projects', setAsCompleted);
 
-test('two plus two is four', () => {
-  expect(2 + 2).toBe(4);
+beforeAll(async () => {
+  await mongoose.connect('mongodb://127.0.0.1:27017/test');
+});
+afterAll(async () => {
+ await mongoose.connection.close();
 });
 
-describe('Test the /projects endpoint', () => {
-  test('It should test GET /projects', async () => {
-    const response = await request(router).get('/projects');
-    console.log(response);
-    // expect(response.statusCode).toBe(200);
+describe('/projects endpoint', () => {
+  it('It should GET /projects', async () => {
+    const response = await request(app.use(router)).get('/projects');
+    expect(response.statusCode).toBe(201);
   });
+  it('It should POST a new project', async () => {
+    const response = await request(app.use(router)).post('/projects');
+    expect(response.statusCode).toBe(201);
+  })
 });
 
