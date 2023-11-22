@@ -21,6 +21,7 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [openSettings, setOpenSettings] = useState(false)
   const [background, setBackground] = useState('mountains')
+  const [font, setFont] = useState('font-sans')
 
   const toggleCreateModal = function () {
     setOpenCreateModal(!openCreateModal)
@@ -43,7 +44,7 @@ function App() {
 
 
   return (
-    <div className={`App ${background} scrollbar-hide`}> {
+    <div className={`App ${background} ${font} scrollbar-hide`}> {
       !isAuthenticated &&
       <HeroSection setIsAuthenticated={setIsAuthenticated}></HeroSection>
       
@@ -78,7 +79,7 @@ function App() {
         } 
         {
           openSettings ?
-          <Settings setBackground={setBackground}/>
+          <Settings background={background} setBackground={setBackground} font={font} setFont={setFont}/>
           :
           null
         }

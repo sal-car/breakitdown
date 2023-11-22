@@ -43,6 +43,14 @@
   background-size: cover;
 }
 
+.settings-button {
+  @apply bg-transparent text-lg hover:bg-black  text-black font-semibold hover:text-white py-3 px-5  hover:border-transparent rounded-xl mr-2
+}
+
+.comic-sans {
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;;
+}
+
 .mountains {
   background-color: #F8DE70;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23769bf6' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%23880088' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%237c88ef' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23ab0079' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%238673e4' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%23c60067' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%23935cd5' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%23d90053' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%239f3ec2' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%23e42d3e' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%23aa00aa' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%23e84f26' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
