@@ -26,7 +26,7 @@ export const Settings = function ({background, setBackground, setFont}) {
     return (
         <div className="Settings ml-16 mt-20">
             <div>
-                <h1 className="text-xl font-semibold my-5 border-b-4 border-black pb-2 w-min">Change background</h1>
+                <h1 className="text-xl font-semibold my-5 border-b-4 border-black pb-2 w-max">Change background</h1>
                 <button id='mountains' onClick={() => handleClick('mountains')} onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave} className="settings-button">Mountains</button>
                 <button id='squiggly' onClick={() => handleClick('squiggly')} onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave} className="settings-button">Squiggly</button>
                 <button id='grey' onClick={() => handleClick('grey')} onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave} className="settings-button">Grey</button>
@@ -34,7 +34,7 @@ export const Settings = function ({background, setBackground, setFont}) {
                 <button id='jellyfish' onClick={() => handleClick('jellyfish')} onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave} className="settings-button">Jellyfish</button>
             </div>
             <div>
-                <h1 className='text-xl font-semibold my-5 border-b-4 border-black pb-2 w-min'>Change font</h1>
+                <h1 className='text-xl font-semibold my-5 border-b-4 border-black pb-2 w-max'>Change font</h1>
                 <button onClick={() => setFont('font-sans')} className='settings-button'>Sans</button>
                 <button onClick={() => setFont('font-serif')} className='settings-button'>Serif</button>
                 <button onClick={() => setFont('font-mono')} className='settings-button'>Mono</button>
