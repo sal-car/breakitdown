@@ -59,7 +59,7 @@ export const TimelineBox = function (props) {
                 <p  className="mt-3 font-bold">{formatDate(project, projectIsATask())}</p>
                 </TimelineOppositeContent>
                 <TimelineSeparator>
-                    <TimelineDot sx={{  "box-shadow": "0px 8px 15px rgba(0, 0, 0, 0.1)", "background-color": `${project.completed === true ? '#22C55E' : 'transparent'}` }} >
+                    <TimelineDot sx={{  "shadow": "0px 8px 15px rgba(0, 0, 0, 0.1)", "backgroundColor": `${project.completed === true ? '#22C55E' : 'transparent'}` }} >
                     {project.completed === true ? 
                         <StarBorderTwoToneIcon/>
                         : 
