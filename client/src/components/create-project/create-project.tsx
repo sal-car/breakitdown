@@ -126,7 +126,7 @@ export const CreateProject: React.FC<CreateProjectProps> = ({
 		} else {
 			setSteps(
 				steps.map((step) =>
-					name === step.id ? { ...step, project: value } : step
+					name === step.id ? { ...step, task: value } : step
 				)
 			);
 		}
@@ -235,9 +235,9 @@ export const CreateProject: React.FC<CreateProjectProps> = ({
 												className="self-start"
 											></HighlightOffRoundedIcon>
 										</button>
-										<textarea
+										<input
 											required
-											// type="text"
+											type="text"
 											className="step-name w-[400px] border break-words outline-none rounded-lg p-2"
 											onChange={handleInputChange}
 											value={step.task}

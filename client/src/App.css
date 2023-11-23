@@ -3,31 +3,56 @@
 @tailwind utilities;
 
 .App {
-  /* height: fit-content; */
-  background: radial-gradient(92.57% 85.81% at 61.59% 3.32%, rgba(203, 174, 241, 0.49) 0%, rgba(203, 174, 241, 0.38) 37.1%, rgba(203, 174, 241, 0.00) 100%, rgba(203, 174, 241, 0.23) 100%), radial-gradient(78.3% 33.3% at -6.29% 39.09%, rgba(203, 174, 241, 0.49) 0%, rgba(203, 174, 241, 0.00) 100%), linear-gradient(241deg, rgba(209, 248, 251, 0.40) 16.78%, rgba(174, 241, 225, 0.00) 80.44%, rgba(182, 251, 255, 0.00) 80.44%), linear-gradient(287deg, rgba(203, 174, 241, 0.03) 14.44%, rgba(214, 191, 244, 0.03) 14.45%, rgba(255, 255, 255, 0.00) 36.9%), linear-gradient(273deg, rgba(246, 211, 211, 0.64) 7.39%, rgba(255, 255, 255, 0.00) 46.61%), linear-gradient(180deg, rgba(246, 211, 211, 0.00) 63.58%, rgba(246, 211, 211, 0.80) 121.78%);
-  background-attachment: fixed;
+	/* height: fit-content; */
+	background: radial-gradient(
+			92.57% 85.81% at 61.59% 3.32%,
+			rgba(203, 174, 241, 0.49) 0%,
+			rgba(203, 174, 241, 0.38) 37.1%,
+			rgba(203, 174, 241, 0) 100%,
+			rgba(203, 174, 241, 0.23) 100%
+		),
+		radial-gradient(
+			78.3% 33.3% at -6.29% 39.09%,
+			rgba(203, 174, 241, 0.49) 0%,
+			rgba(203, 174, 241, 0) 100%
+		),
+		linear-gradient(
+			241deg,
+			rgba(209, 248, 251, 0.4) 16.78%,
+			rgba(174, 241, 225, 0) 80.44%,
+			rgba(182, 251, 255, 0) 80.44%
+		),
+		linear-gradient(
+			287deg,
+			rgba(203, 174, 241, 0.03) 14.44%,
+			rgba(214, 191, 244, 0.03) 14.45%,
+			rgba(255, 255, 255, 0) 36.9%
+		),
+		linear-gradient(
+			273deg,
+			rgba(246, 211, 211, 0.64) 7.39%,
+			rgba(255, 255, 255, 0) 46.61%
+		),
+		linear-gradient(
+			180deg,
+			rgba(246, 211, 211, 0) 63.58%,
+			rgba(246, 211, 211, 0.8) 121.78%
+		);
+	background-attachment: fixed;
 }
 
-/* .Dashboard {
-background-color: rgba(255, 255, 255, 0.5);
-font-size: 0.8em;
-  border-radius: 20px;
-  /* text-align: center; */
-  /* width: 75vw;
-} */ 
-
 .Project {
-  /* background-color: blue; */
+	/* background-color: blue; */
 }
 
 .select {
-  vertical-align: bottom;
+	vertical-align: bottom;
 }
 
 .right-info {
-  height: fit-content
+	height: fit-content;
 }
 
 .main-dashboard {
-  max-height: 700px;
+	max-height: 700px;
 }
