@@ -1,4 +1,4 @@
-const API_KEY = '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';
+const API_KEY = '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';
 import OpenAI from 'openai';
 
 async function getDataFromOpenAI(request) {
