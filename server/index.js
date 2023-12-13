@@ -4,14 +4,14 @@ import router from './router.js'
 import bodyParser from 'body-parser';
 
 const app = express();
-const port = 3000;
+const port = 3005;
 
 
 app.use(express.json());
 app.use(bodyParser.json())
 app.use(cors());
 app.use(router);
-console.log('working')
+// console.log('working')
 
 
 app.listen(port, () => {

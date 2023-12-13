@@ -4,7 +4,6 @@ import {CreateProject} from './components/create-project/create-project.js';
 import {ProjectDashboard} from './components/dashboard/project-dashboard.js'
 import { useState } from 'react';
 import {Navigation} from './components/navigation/navigation.js'
-// import { Navbar } from './components/navigation/navbar.js';
 import { getProjectsFromServer } from './api-service.js';
 import { useEffect } from 'react';
 import { TaskDashboard } from './components/dashboard/task-dashboard.js';
@@ -12,7 +11,7 @@ import {HeroSection} from './components/landing-page/hero-section.js'
 import { Settings } from './components/settings/settings.js';
 
 
-/* eslint-disable */
+
 
 function App() {
   const [projects, setProjects] = useState([]);
@@ -22,6 +21,7 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [openSettings, setOpenSettings] = useState(false)
   const [background, setBackground] = useState('mountains')
+  const [font, setFont] = useState('font-sans')
 
   const toggleCreateModal = function () {
     setOpenCreateModal(!openCreateModal)
@@ -31,7 +31,7 @@ function App() {
     const fetchOldProjects = async function () {
       try {
         const response = await getProjectsFromServer()
-        console.log(response)
+        // console.log(response)
 
         setProjects([...response])
       } catch (error) {
@@ -44,7 +44,7 @@ function App() {
 
 
   return (
-    <div className={`App ${background} scrollbar-hide`}> {
+    <div className={`App ${background} ${font} scrollbar-hide`}> {
       !isAuthenticated &&
       <HeroSection setIsAuthenticated={setIsAuthenticated}></HeroSection>
       
@@ -79,7 +79,7 @@ function App() {
         } 
         {
           openSettings ?
-          <Settings setBackground={setBackground}/>
+          <Settings background={background} setBackground={setBackground} font={font} setFont={setFont}/>
           :
           null
         }

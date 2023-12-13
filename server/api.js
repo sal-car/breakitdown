@@ -1,4 +1,4 @@
-import API_KEY from '../secrets/apikey.js';
+import { API_KEY } from '../secrets/apikey.js'
 import OpenAI from 'openai'
 
 
@@ -6,11 +6,11 @@ import OpenAI from 'openai'
 // parameter: Object {project: "Clean my room", description: "My room is a mess"}
 // returns: Array [{project: "Gather cleaning supplies"}, ...] OR null if error in API request
 async function getDataFromOpenAI (request) {
-    console.log(request)
+    // console.log(request)
         const response = await requestDataFromOpenAI(request.project, request.description);
         if (!response) return null;
 
-        console.log(response)
+        // console.log(response)
         const data = formatResponse(response.choices[0].text);
 
         // console.log('data: ', data)

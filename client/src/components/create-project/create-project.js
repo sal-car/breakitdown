@@ -2,7 +2,6 @@ import { useState } from "react";
 import React  from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import './styles.css'
 import { getBreakdown, sendToServer } from '../../api-service.js'
 import {v4 as uuidv4} from 'uuid'
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
@@ -52,7 +51,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
     // Saving project
     const saveProject = function (e) {
         e.preventDefault()
-        setProjects([...projects, {project: projectData.project, date: projectData.date, id: projectData.id, tasks: [...steps]}])
+        setProjects([...projects, {project: projectData.project, description: projectData.description, date: projectData.date, id: projectData.id, tasks: [...steps]}])
         sendToServer({...projectData, tasks: [...steps]})
         toggleCreateModal()
     }
@@ -101,7 +100,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
                         <div className="name-date flex gap-5 mr-3">
                             <div className="name flex flex-col gap-1 mb-8">
                                 <label htmlFor="project-name" className="font-semibold tracking-wide">Project</label>
-                                <input required type="text" className="project-name outline-none border p-2.5 rounded-lg w-[400px]" onChange={handleInputChange} name="project-name" value={projectData.project} placeholder="What's the goal?"/>
+                                <input required={true} type="text" className="project-name outline-none border p-2.5 rounded-lg w-[400px]" onChange={handleInputChange} name="project-name" value={projectData.project} placeholder="What's the goal?"/>
                             </div>
                             <div className="date-picker flex flex-col mb-12">
                                 <label htmlFor="date" className="font-semibold tracking-wide mb-1">Deadline</label>
@@ -110,7 +109,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
                         </div>
                         <div className="description flex flex-col gap-1 mb-10">
                             <label htmlFor="project-description" className=" font-semibold tracking-wide ">Description</label>
-                            <textarea placeholder="Would you like to expand on that?" className="project-description h-28 outline-none border p-2.5 rounded-xl" onChange={handleInputChange} name="project-description" value={projectData.description}/>
+                            <textarea required={true} placeholder="Would you like to expand on that?" className="project-description h-28 outline-none border p-2.5 rounded-xl" onChange={handleInputChange} name="project-description" value={projectData.description}/>
                         </div>
                     </div> 
                 </form>
@@ -145,7 +144,7 @@ export const CreateProject = function ({toggleCreateModal, projects, setProjects
                     }
                     <div className="btns mt-3">
                         <button className="bg-transparent left-[62px] relative hover:bg-violet-900 text-violet-900 font-semibold hover:text-white py-2 px-4 border border-violet-900 hover:border-transparent rounded  mx-5 mr-10" onClick={createStep}>Add step</button>
-                        <button className="submit-btn relative left-52 bg-transparent hover:bg-violet-900 text-violet-900 font-semibold hover:text-white py-2 px-4 border border-violet-900 hover:border-transparent rounded  mx-5 mr-10" onClick={saveProject} name="save-project">Save</button>
+                        <button className="submit-btn relative left-52 bg-transparent hover:bg-violet-900 text-violet-900 font-semibold hover:text-white py-2 px-4 border border-violet-900 hover:border-transparent rounded  mx-5 mr-10" name="save-project" onClick={saveProject}>Save</button>
                     </div>
                 </div>
             </div>

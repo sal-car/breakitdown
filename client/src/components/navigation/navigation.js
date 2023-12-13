@@ -14,7 +14,7 @@ export const Navigation = function ({toggleCreateModal, setOpenProjectDashboard,
                 setOpenSettings={setOpenSettings}
                 ></Navbar>
                 </div>
-                <button className="bg-transparent text-lg hover:bg-black  text-black font-semibold hover:text-white py-3 px-5  hover:border-transparent rounded-xl mr-14" onClick={toggleCreateModal}>New project</button>
+                <button className="settings-button" onClick={toggleCreateModal}>New project</button>
             </header>
         </div>
     )

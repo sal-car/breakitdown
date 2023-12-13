@@ -11,7 +11,7 @@ export const Project = function ({handleDeleteClick, project, projects, setProje
         if (!str) {
             return ""
         }
-        return str.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
+        return str.toLowerCase().replace(/(?<!')\b\w/g, s => s.toUpperCase());
       }
 
     // On render, set completed status of projects 
@@ -86,11 +86,12 @@ export const Project = function ({handleDeleteClick, project, projects, setProje
                 :
                     null
                 }
-                <div style={{width: `${calculateProgress()}` }} className= "bg-green-500 rounded-full h-2.5 justify-self-end">
-            </div>
+                {project.tasks.length ?
+                    <div style={{width: `${calculateProgress()}` }} className= "bg-green-500 rounded-full h-2.5 justify-self-end"></div>
+                :
+                    null
+                }
             </div>
         </div>
     )
 }
-
-// onClick={onProjectClick}
