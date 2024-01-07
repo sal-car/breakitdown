@@ -24,10 +24,10 @@ An app that breaks down projects and tasks into manageable steps.
 To be able to run the server, you need to create a secrets folder in root with an API key from OpenAI. You can generate one at their website.
 
 1. Go to root folder  
-	cd breakitdown
-2. Create a folder called secrets and a file called apikey.js  
-3. Insert the following in apikey.js :  
-export const API_KEY = "your_api_key"
+	`cd breakitdown`  
+2. Create a folder called `secrets` and a file called `apikey.js`  
+3. Insert the following in `apikey.js`:  
+`export const API_KEY = "your_api_key"`
 
 Any issues, do let me know!
 
