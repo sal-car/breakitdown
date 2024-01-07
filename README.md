@@ -4,13 +4,13 @@ An app that breaks down projects and tasks into manageable steps.
 # Getting Started
 
 1. Install dependencies
-	1.1 From root folder__
-		cd breakitdown__
-		npm i__
-	1.2 From client folder
-		cd client
+	1.1 From root folder
+		cd breakitdown
 		npm i
-	1.3 From server folder
+	1.2 From client folder  
+		cd client  
+		npm i  
+	1.3 From server folder  
 		cd ../server
 		npm i
 2. Run program
