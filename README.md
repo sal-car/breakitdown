@@ -19,6 +19,7 @@ An app that breaks down projects and tasks into manageable steps.
 		npm start
 	2.2 Run server (I use nodemon)
 		nodemon index.js
+	2.4 Testing indentation
 
 ## NOTE:
 To be able to run the server, you need to create a secrets folder in root with an API key from OpenAI. You can generate one at their website.
