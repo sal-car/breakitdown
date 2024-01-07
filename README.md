@@ -3,7 +3,33 @@ An app that breaks down projects and tasks into manageable steps.
 
 # Getting Started
 
-Run npm i from client & server folders to run. You will have to have an API key from OpenAI's API platform to use the AI functionality. The app also works without it, the user just has to add their own tasks.
+1. Install dependencies
+    1.1 From root folder
+        cd breakitdown 
+        npm i 
+    1.2 From client folder
+        cd client
+        npm i
+    1.3 From server folder
+        cd ../server
+        npm i
+2. Run program
+    2.1 Run client
+        cd ../client
+        npm start
+    2.2 Run server (I use nodemon)
+        nodemon index.js
+
+## NOTE:
+To be able to run the server, you need to create a secrets folder in root with an API key from OpenAI. You can generate one at their website.
+
+1. Go to root folder
+    cd breakitdown
+2. Create a folder called secrets and a file called apikey.js
+3. Insert the following in apikey.js :
+export const API_KEY = "your_api_key"
+
+Any issues, do let me know!
 
 # Teck stack
 
