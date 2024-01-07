@@ -14,7 +14,7 @@ An app that breaks down projects and tasks into manageable steps.
 		`cd ../server`  
 		`npm i`  
 2. Run program  
-	2.1 Run client` 
+	2.1 Run client   
 		`cd ../client`  
 		`npm start`  
 	2.2 Run server (I use nodemon)  
